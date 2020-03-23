@@ -28,18 +28,18 @@ class TickerComponent extends React.Component {
         return (
             <div>
                 <DataTable value={this.state.allTickers} autoLayout={true}>
-                    <Column field="ticker" header="Ticker"/>
-                    <Column field="company" header="Company"/>
-                    <Column field="last_price" header="Last price"/>
-                    <Column field="chg_percentage" header="Chg percentage"/>
-                    <Column field="chg" header="Chg"/>
-                    <Column field="rating" header="Rating"/>
-                    <Column field="volume" header="Volume"/>
-                    <Column field="mkt_cap" header="Market cap"/>
-                    <Column field="p_e" header="P/E"/>
-                    <Column field="eps" header="Eps"/>
-                    <Column field="employees" header="Employees"/>
-                    <Column field="sector" header="Sector"/>
+                    <Column field="ticker" header="Ticker" sortable={true}/>
+                    <Column field="company" header="Company" sortable={true}/>
+                    <Column field="last_price" header="Last price" sortable={true}/>
+                    <Column field="chg_percentage" header="Chg percentage" sortable={true}/>
+                    <Column field="chg" header="Chg" sortable={true}/>
+                    <Column field="rating" header="Rating" sortable={true}/>
+                    <Column field="volume" header="Volume" sortable={true}/>
+                    <Column field="mkt_cap" header="Market cap" sortable={true}/>
+                    <Column field="p_e" header="P/E" sortable={true}/>
+                    <Column field="eps" header="Eps" sortable={true}/>
+                    <Column field="employees" header="Employees" sortable={true}/>
+                    <Column field="sector" header="Sector" sortable={true}/>
                 </DataTable>
             </div>
         )

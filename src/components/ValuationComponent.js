@@ -25,16 +25,16 @@ class ValuationComponent extends React.Component {
         return (
             <div>
                 <DataTable value={this.state.allValuations} autoLayout={true}>
-                    <Column field="ticker_valuation" header="Ticker"/>
-                    <Column field="last" header="Last price"/>
-                    <Column field="mkt_cap" header="Market cap"/>
-                    <Column field="p_e" header="P/E"/>
-                    <Column field="price_rev" header="Price/Rev"/>
-                    <Column field="eps_ttm" header="EPS (TTM)"/>
-                    <Column field="eps_diluted" header="EPS (Diluted)"/>
-                    <Column field="ev_ebitda" header="EV/EBITDA"/>
-                    <Column field="ev" header="Enterprise value"/>
-                    <Column field="shares" header="Shares"/>
+                    <Column field="ticker_valuation" header="Ticker" sortable={true}/>
+                    <Column field="last" header="Last price" sortable={true}/>
+                    <Column field="mkt_cap" header="Market cap" sortable={true}/>
+                    <Column field="p_e" header="P/E" sortable={true}/>
+                    <Column field="price_rev" header="Price/Rev" sortable={true}/>
+                    <Column field="eps_ttm" header="EPS (TTM)" sortable={true}/>
+                    <Column field="eps_diluted" header="EPS (Diluted)" sortable={true}/>
+                    <Column field="ev_ebitda" header="EV/EBITDA" sortable={true}/>
+                    <Column field="ev" header="Enterprise value" sortable={true}/>
+                    <Column field="shares" header="Shares" sortable={true}/>
                 </DataTable>
             </div>
         )
