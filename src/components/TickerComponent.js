@@ -1,10 +1,10 @@
 import React from "react";
 import axios from "axios"
-import {DataTable} from "primereact/datatable";
-import {Column} from "primereact/column";
 import 'primereact/resources/themes/nova-light/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
+import {DataTable} from "primereact/datatable";
+import {Column} from "primereact/column";
 
 class TickerComponent extends React.Component {
 
@@ -12,7 +12,9 @@ class TickerComponent extends React.Component {
         super();
         this.state = {
             allTickers: []
-        }
+        };
+
+        this.onClick = this.onClick.bind(this)
     }
 
     componentDidMount() {
@@ -24,11 +26,23 @@ class TickerComponent extends React.Component {
             })
     }
 
+    onClick(rowData) {
+        console.log(rowData.ticker)
+    }
+
+
     render() {
+
+        const handleClick = (rowData) => {
+            return <div>
+                <a href={"ticker/" + rowData.id}>{rowData.ticker}</a>
+            </div>;
+        };
+
         return (
             <div>
                 <DataTable value={this.state.allTickers} autoLayout={true}>
-                    <Column field="ticker" header="Ticker" sortable={true}/>
+                    <Column field="ticker" header="Ticker" sortable={true} body={handleClick}/>
                     <Column field="company" header="Company" sortable={true}/>
                     <Column field="last_price" header="Last price" sortable={true}/>
                     <Column field="chg_percentage" header="Chg percentage" sortable={true}/>

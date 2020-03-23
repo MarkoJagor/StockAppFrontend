@@ -11,13 +11,13 @@ class NavbarComponent extends React.Component {
             items: [
                 {
                     label: "Ticker",
-                    icon: "pi pi-fw pi-home",
+                    icon: "pi pi-fw pi-table ",
                     command: () => (this.props.history.push("/ticker"))
 
                 },
                 {
                     label: "Valuation",
-                    icon: "pi pi-fw pi-home",
+                    icon: "pi pi-fw pi-table",
                     command: () => (this.props.history.push("/valuation"))
                 }
 
