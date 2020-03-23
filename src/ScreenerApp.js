@@ -12,7 +12,8 @@ class ScreenerApp extends React.Component {
                 <div>
                     <NavbarComponent/>
                     <Switch>
-                        <Route exact path={["/", "/ticker"]} component={TickerComponent}/>
+                        <Route exact path={["/", "/ticker"]}
+                               component={TickerComponent}/>
                         <Route exact path={"/valuation"} component={ValuationComponent}/>
                     </Switch>
 

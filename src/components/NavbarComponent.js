@@ -1,29 +1,30 @@
 import React from "react";
 import {TabMenu} from "primereact/tabmenu";
+import {withRouter} from "react-router-dom";
 
 class NavbarComponent extends React.Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
-            items: [
 
+            items: [
                 {
-                    label: "Ticker", icon: "pi pi-fw pi-home", command: (this.navigateToPage("/ticker"))//, url: "http://localhost:3000/"
+                    label: "Ticker",
+                    icon: "pi pi-fw pi-home",
+                    command: () => (this.props.history.push("/ticker"))
 
                 },
                 {
-                    label: "Valuation", icon: "pi pi-fw pi-home", command: (this.navigateToPage("/valuation"))//, url: "http://localhost:3000/valuation"
+                    label: "Valuation",
+                    icon: "pi pi-fw pi-home",
+                    command: () => (this.props.history.push("/valuation"))
                 }
 
             ],
         }
 
         this.onTabChange = this.onTabChange.bind(this)
-    }
-
-    navigateToPage = (path) => {
-        console.log('Navigate to path ' + path);
     }
 
     onTabChange(event) {
@@ -46,4 +47,4 @@ class NavbarComponent extends React.Component {
     }
 }
 
-export default NavbarComponent
+export default withRouter(NavbarComponent)
