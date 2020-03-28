@@ -3,71 +3,106 @@ import axios from "axios"
 import 'primereact/resources/themes/nova-light/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
-import {DataTable} from "primereact/datatable";
 import {Column} from "primereact/column";
-import {InputText} from 'primereact/inputtext';
+import {DataTable} from "primereact/datatable";
+import {InputText} from "primereact/inputtext";
+import {MultiSelect} from "primereact/multiselect";
 
 class TickerComponent extends React.Component {
 
     constructor() {
         super();
         this.state = {
-            allTickers: []
+            allTickers: [],
+            dynamicColumns: [
+                {field: "company", header: "Company", sortable: true, excludeGlobalFilter: true},
+                {field: "last_price", header: "Last price", sortable: true, excludeGlobalFilter: true},
+                {field: "chg_percentage", header: "Chg percentage", sortable: true, excludeGlobalFilter: true},
+                {field: "chg", header: "Chg", sortable: true, excludeGlobalFilter: true},
+                {field: "rating", header: "Rating", sortable: true, excludeGlobalFilter: true},
+                {field: "volume", header: "Volume", sortable: true, excludeGlobalFilter: true},
+                {field: "mkt_cap", header: "Market Cap", sortable: true, excludeGlobalFilter: true},
+                {field: "p_e", header: "P/E", sortable: true, excludeGlobalFilter: true},
+                {field: "eps", header: "EPS", sortable: true, excludeGlobalFilter: true},
+                {field: "employees", header: "Employees", sortable: true, excludeGlobalFilter: true},
+                {field: "sector", header: "Sector", sortable: true, excludeGlobalFilter: true},
+            ],
+            selectedColumns: []
         };
+
+        this.handleClick = this.handleClick.bind(this)
+        this.onColumnToggle = this.onColumnToggle.bind(this)
     }
 
     componentDidMount() {
         axios.get("http://localhost:8080/tickers")
             .then(response => {
                 this.setState({
-                    allTickers: response.data
+                    allTickers: response.data,
+                    selectedColumns: this.state.dynamicColumns
                 })
             })
     }
 
+    onColumnToggle(event) {
+        let selectedColumns = event.value;
+        let orderedSelectedColumns = this.state.dynamicColumns.filter(col => selectedColumns.includes(col));
+        this.setState({selectedColumns: orderedSelectedColumns});
+    }
+
+    handleClick = (row) => {
+        return <div>
+            <a href={"ticker/" + row.id}>{row.ticker}</a>
+        </div>
+    }
+
+
     render() {
 
-        const handleClick = (rowData) => {
-            return <div>
-                <a href={"ticker/" + rowData.id}>{rowData.ticker}</a>
-            </div>;
-        };
-
-        const tickerFilter = (
-            <div style={{'textAlign': 'left'}}>
-                <i className="pi pi-search" style={{margin: '4px 10px 0 0'}}></i>
-                <InputText type="search" onInput={(e) => this.setState({globalFilter: e.target.value})}
-                           placeholder="Search by Ticker" size="20"/>
+        const searchByTicker = (
+            <div style={{textAlign: 'left'}}>
+                <i className="pi pi-search" style={{margin: '4px 10px 0 0'}}/>
+                <InputText type="search"
+                           onInput={(e) => this.setState({globalFilter: e.target.value})}
+                           placeholder="Search by Ticker"
+                           size="20"/>
             </div>
-        );
+        )
+
+        const toggleColumns = (
+            <MultiSelect value={this.state.selectedColumns}
+                         options={this.state.dynamicColumns}
+                         optionLabel="header"
+                         placeholder="Select columns to display"
+                         filter={true}
+                         filterPlaceholder="Search"
+                         onChange={this.onColumnToggle}/>
+        )
+
+        const header = (
+            <div className="p-inputgroup">
+                {searchByTicker}
+                {toggleColumns}
+            </div>
+        )
+
+        const dynamicColumns = this.state.selectedColumns.map((column) => {
+            return <Column key={column.field}
+                           field={column.field}
+                           header={column.header}
+                           sortable={column.sortable}
+                           body={column.body}
+                           excludeGlobalFilter={column.excludeGlobalFilter}
+                           disabled={column.disabled}/>
+        });
 
         return (
+
             <div>
-                <DataTable value={this.state.allTickers} autoLayout={true} header={tickerFilter}
+                <DataTable value={this.state.allTickers} autoLayout={true} header={header}
                            globalFilter={this.state.globalFilter} emptyMessage="No records found">
-                    <Column field="ticker" header="Ticker" sortable={true} body={handleClick}/>
-                    <Column field="company" header="Company" sortable={true}
-                            excludeGlobalFilter={true}/>
-                    <Column field="last_price" header="Last price" sortable={true}
-                            excludeGlobalFilter={true}/>
-                    <Column field="chg_percentage" header="Chg percentage" sortable={true}
-                            excludeGlobalFilter={true}/>
-                    <Column field="chg" header="Chg" sortable={true}
-                            excludeGlobalFilter={true}/>
-                    <Column field="rating" header="Rating" sortable={true}
-                            excludeGlobalFilter={true}/>
-                    <Column field="volume" header="Volume" sortable={true}
-                            excludeGlobalFilter={true}/>
-                    <Column field="mkt_cap" header="Market cap" sortable={true}
-                            excludeGlobalFilter={true}/>
-                    <Column field="p_e" header="P/E" sortable={true}
-                            excludeGlobalFilter={true}/>
-                    <Column field="eps" header="Eps" sortable={true}
-                            excludeGlobalFilter={true}/>
-                    <Column field="employees" header="Employees" sortable={true}
-                            excludeGlobalFilter={true}/>
-                    <Column field="sector" header="Sector" sortable={true}
-                            excludeGlobalFilter={true}/>
+                    <Column field="ticker" header="Ticker" sortable={true} body={this.handleClick}/>
+                    {dynamicColumns}
                 </DataTable>
             </div>
         )
