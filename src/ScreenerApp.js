@@ -17,7 +17,6 @@ class ScreenerApp extends React.Component {
                         <Route exact path={"/valuation"} component={ValuationComponent}/>
                         <Route path={"/ticker/:id"} component={CompanyInfoComponent}/>
                     </Switch>
-
                 </div>
             </Router>
         )

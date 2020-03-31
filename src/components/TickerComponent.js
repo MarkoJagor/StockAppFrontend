@@ -7,6 +7,9 @@ import {Column} from "primereact/column";
 import {DataTable} from "primereact/datatable";
 import {InputText} from "primereact/inputtext";
 import {MultiSelect} from "primereact/multiselect";
+import {Button} from "primereact/button";
+import FilterComponent from "./FilterComponent";
+
 
 class TickerComponent extends React.Component {
 
@@ -27,11 +30,9 @@ class TickerComponent extends React.Component {
                 {field: "employees", header: "Employees", sortable: true, excludeGlobalFilter: true},
                 {field: "sector", header: "Sector", sortable: true, excludeGlobalFilter: true},
             ],
-            selectedColumns: []
+            selectedColumns: [],
+            show: false
         };
-
-        this.handleClick = this.handleClick.bind(this)
-        this.onColumnToggle = this.onColumnToggle.bind(this)
     }
 
     componentDidMount() {
@@ -44,18 +45,24 @@ class TickerComponent extends React.Component {
             })
     }
 
-    onColumnToggle(event) {
+    onColumnToggle = (event) => {
         let selectedColumns = event.value;
         let orderedSelectedColumns = this.state.dynamicColumns.filter(col => selectedColumns.includes(col));
         this.setState({selectedColumns: orderedSelectedColumns});
-    }
+    };
 
     handleClick = (row) => {
         return <div>
             <a href={"ticker/" + row.id}>{row.ticker}</a>
         </div>
-    }
+    };
 
+    showModal = (event) => {
+        this.setState({
+                show: !this.state.show
+            }
+        )
+    };
 
     render() {
 
@@ -67,7 +74,7 @@ class TickerComponent extends React.Component {
                            placeholder="Search by Ticker"
                            size="20"/>
             </div>
-        )
+        );
 
         const toggleColumns = (
             <MultiSelect value={this.state.selectedColumns}
@@ -77,14 +84,26 @@ class TickerComponent extends React.Component {
                          filter={true}
                          filterPlaceholder="Search"
                          onChange={this.onColumnToggle}/>
-        )
+        );
+
+        const filter = (
+            <div>
+                <Button label="Filters" icon="pi pi-filter" onClick={this.showModal}/>
+                <FilterComponent onClose={this.showModal} show={this.state.show}/>
+            </div>
+        );
 
         const header = (
-            <div className="p-inputgroup">
-                {searchByTicker}
-                {toggleColumns}
+            <div>
+                <div style={{float: "right"}}>
+                    {filter}
+                </div>
+                <div className="p-inputgroup">
+                    {searchByTicker}
+                    {toggleColumns}
+                </div>
             </div>
-        )
+        );
 
         const dynamicColumns = this.state.selectedColumns.map((column) => {
             return <Column key={column.field}
