@@ -64,7 +64,7 @@ class FilterComponent extends React.Component {
             <div>
                 <Dialog header="Choose filters"
                         visible={this.props.show}
-                        style={{width: '75%'}}
+                        style={{width: '50%'}}
                         modal={true}
                         onHide={e => {
                             this.onClose(e)
@@ -72,17 +72,19 @@ class FilterComponent extends React.Component {
                         footer={footer}>
 
                     <div align={"left"}>
-                        Price to Earnings:
+                        Price to Earnings
                         <InputText id="p/e"
                                    value={this.state.p_eInputMin}
                                    name="p_eInputMin"
                                    onChange={this.handleChange}
+                                   style={{margin: "0 5px", width: "100px"}}
                         />
                         -
                         <InputText id="p/e"
                                    value={this.state.p_eInputMax}
                                    name="p_eInputMax"
                                    onChange={this.handleChange}
+                                   style={{marginLeft: "5px", width: "100px"}}
                         />
                     </div>
                 </Dialog>
