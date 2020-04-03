@@ -1,0 +1,13 @@
+.col1 {
+    position: relative;
+    width: 50%;
+    float: left;
+    text-align: left;
+}
+
+.col2 {
+    position: relative;
+    width: 50%;
+    float: left;
+    text-align: right;
+}

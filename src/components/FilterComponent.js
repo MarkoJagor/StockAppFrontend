@@ -2,6 +2,7 @@ import React from "react";
 import {Dialog} from "primereact/dialog";
 import {Button} from "primereact/button";
 import {InputText} from "primereact/inputtext";
+import styles from "../componentStyles/FilterComponentStyle.module.css"
 
 
 class FilterComponent extends React.Component {
@@ -11,7 +12,9 @@ class FilterComponent extends React.Component {
         this.state = {
             filteredList: [],
             p_eInputMin: "",
-            p_eInputMax: ""
+            p_eInputMax: "",
+            epsInputMin: "",
+            epsInputMax: ""
         }
     }
 
@@ -19,14 +22,25 @@ class FilterComponent extends React.Component {
         setTimeout(() => {
 
             const p_eMin = (this.state.p_eInputMin === "") ? 0 : this.state.p_eInputMin;
+
             const p_eMax = (this.state.p_eInputMax === "") ? Math.max.apply(Math, this.props.tickerData.map(obj => {
                 return (obj.p_e + 1)
             })) : this.state.p_eInputMax;
 
+            const epsMin = (this.state.epsInputMin === "") ? Math.min.apply(Math, this.props.tickerData.map(obj => {
+                return (obj.eps - 1)
+            })) : this.state.epsInputMin;
+            console.log(epsMin)
+
+            const epsMax = (this.state.epsInputMax === "") ? Math.max.apply(Math, this.props.tickerData.map(obj => {
+                return (obj.eps + 1)
+            })) : this.state.epsInputMax;
+
 
             this.setState({
                 filteredList: this.props.tickerData.filter(obj => {
-                    return ((obj.p_e != null) && (obj.p_e > p_eMin) && (obj.p_e < p_eMax))
+                    return ((obj.p_e != null) && (obj.p_e > p_eMin) && (obj.p_e < p_eMax) &&
+                        (obj.eps != null) && (obj.eps > epsMin) && (obj.eps < epsMax))
                 })
             });
 
@@ -47,7 +61,6 @@ class FilterComponent extends React.Component {
     };
 
     render() {
-
 
         const footer = (
             <div>
@@ -71,7 +84,7 @@ class FilterComponent extends React.Component {
                         }}
                         footer={footer}>
 
-                    <div align={"left"}>
+                    <div className={styles.col1}>
                         Price to Earnings
                         <InputText id="p/e"
                                    value={this.state.p_eInputMin}
@@ -83,6 +96,23 @@ class FilterComponent extends React.Component {
                         <InputText id="p/e"
                                    value={this.state.p_eInputMax}
                                    name="p_eInputMax"
+                                   onChange={this.handleChange}
+                                   style={{marginLeft: "5px", width: "100px"}}
+                        />
+                    </div>
+
+                    <div className={styles.col2}>
+                        Earnings per Share
+                        <InputText id="eps"
+                                   value={this.state.epsInputMin}
+                                   name="epsInputMin"
+                                   onChange={this.handleChange}
+                                   style={{margin: "0 5px", width: "100px"}}
+                        />
+                        -
+                        <InputText id="eps"
+                                   value={this.state.epsInputMax}
+                                   name="epsInputMax"
                                    onChange={this.handleChange}
                                    style={{marginLeft: "5px", width: "100px"}}
                         />
