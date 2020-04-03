@@ -16,7 +16,8 @@ class TickerComponent extends React.Component {
     constructor() {
         super();
         this.state = {
-            allTickers: [],
+            tickerData: [],
+            tableData: [],
             dynamicColumns: [
                 {field: "company", header: "Company", sortable: true, excludeGlobalFilter: true},
                 {field: "last_price", header: "Last price", sortable: true, excludeGlobalFilter: true},
@@ -39,10 +40,16 @@ class TickerComponent extends React.Component {
         axios.get("http://localhost:8080/tickers")
             .then(response => {
                 this.setState({
-                    allTickers: response.data,
+                    tickerData: response.data,
+                    tableData: response.data,
                     selectedColumns: this.state.dynamicColumns
                 })
             })
+    }
+
+    filterTableData = (value) => {
+        var filteredTickers = value;
+        this.setState({tableData: filteredTickers})
     }
 
     onColumnToggle = (event) => {
@@ -57,7 +64,7 @@ class TickerComponent extends React.Component {
         </div>
     };
 
-    showModal = (event) => {
+    showModal = () => {
         this.setState({
                 show: !this.state.show
             }
@@ -89,7 +96,8 @@ class TickerComponent extends React.Component {
         const filter = (
             <div>
                 <Button label="Filters" icon="pi pi-filter" onClick={this.showModal}/>
-                <FilterComponent onClose={this.showModal} show={this.state.show}/>
+                <FilterComponent filterTableData={this.filterTableData} onClose={this.showModal}
+                                 show={this.state.show} tickerData={this.state.tickerData}/>
             </div>
         );
 
@@ -118,7 +126,7 @@ class TickerComponent extends React.Component {
         return (
 
             <div>
-                <DataTable value={this.state.allTickers} autoLayout={true} header={header}
+                <DataTable value={this.state.tableData} autoLayout={true} header={header}
                            globalFilter={this.state.globalFilter} emptyMessage="No records found">
                     <Column field="ticker" header="Ticker" sortable={true} body={this.handleClick}/>
                     {dynamicColumns}
