@@ -2,6 +2,25 @@ import React from "react";
 import {TabMenu} from "primereact/tabmenu";
 import {withRouter} from "react-router-dom";
 
+/*
+
+
+
+
+
+
+/////////
+///////// NOT IN USE AT THE MOMENT
+////////
+
+
+
+
+
+
+
+
+*/
 class NavbarComponent extends React.Component {
 
     constructor(props) {
