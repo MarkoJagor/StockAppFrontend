@@ -8,7 +8,7 @@ class TableTabsComponent extends React.Component {
     constructor() {
         super();
         this.state = {
-            activeIndex: 1
+            activeIndex: 0
         }
     }
 
@@ -16,10 +16,10 @@ class TableTabsComponent extends React.Component {
         return (
             <TabView activeIndex={this.state.activeIndex} renderActiveOnly={false}
                      onTabChange={(e) => this.setState({activeIndex: e.index})}>
-                <TabPanel header="Header I">
+                <TabPanel header="Ticker" leftIcon="pi pi-table">
                     <TickerComponent/>
                 </TabPanel>
-                <TabPanel header="Header II">
+                <TabPanel header="Valuation" leftIcon="pi pi-table">
                     <ValuationComponent/>
                 </TabPanel>
             </TabView>
