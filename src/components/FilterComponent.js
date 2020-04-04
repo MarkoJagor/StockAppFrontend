@@ -61,9 +61,6 @@ class FilterComponent extends React.Component {
     };
 
     render() {
-
-        const myRegex = /^(?:\-?\d+\.\d+[, ]*)+$/;
-
         const footer = (
             <div>
                 <Button label="Close" icon="pi pi-times" onClick={this.onClose}/>
