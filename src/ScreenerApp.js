@@ -1,7 +1,8 @@
 import React from "react";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom"
 import CompanyInfoComponent from "./components/CompanyInfoComponent";
-import TableTabsComponent from "./components/TableTabsComponent";
+import ScreenerComponent from "./components/ScreenerComponent";
+import MenubarComponent from "./components/MenubarComponent";
 
 class ScreenerApp extends React.Component {
 
@@ -9,9 +10,10 @@ class ScreenerApp extends React.Component {
         return (
             <Router history={History}>
                 <div>
+                    <MenubarComponent/>
                     <Switch>
-                        <Route exact path={"/"} component={TableTabsComponent}/>
-                        <Route path={"/ticker/:id"} component={CompanyInfoComponent}/>
+                        <Route exact path={"/screener"} component={ScreenerComponent}/>
+                        <Route path={"/screener/:id"} component={CompanyInfoComponent}/>
                     </Switch>
                 </div>
             </Router>
