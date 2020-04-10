@@ -4,6 +4,9 @@ import TickerComponent from "./TickerComponent";
 import axios from "axios"
 import OverviewTabComponent from "./OverviewTabComponent";
 import PerformanceTabComponent from "./PerformanceTabComponent";
+import KeyRatiosTabComponent from "./KeyRatiosTabComponent";
+import FinancialsTabComponent from "./FinancialsTabComponent";
+import DividendsTabComponent from "./DividendsTabComponent";
 
 class ScreenerComponent extends React.Component {
 
@@ -47,6 +50,21 @@ class ScreenerComponent extends React.Component {
                     <PerformanceTabComponent tickerData={this.state.tickerData}
                                              searchByTickerInput={this.state.searchByTickerInput}
                                              updateTickerSearch={this.updateTickerSearch}/>
+                </TabPanel>
+                <TabPanel header="Key Ratios" leftIcon="pi pi-table">
+                    <KeyRatiosTabComponent tickerData={this.state.tickerData}
+                                           searchByTickerInput={this.state.searchByTickerInput}
+                                           updateTickerSearch={this.updateTickerSearch}/>
+                </TabPanel>
+                <TabPanel header="Financials" leftIcon="pi pi-table">
+                    <FinancialsTabComponent tickerData={this.state.tickerData}
+                                            searchByTickerInput={this.state.searchByTickerInput}
+                                            updateTickerSearch={this.updateTickerSearch}/>
+                </TabPanel>
+                <TabPanel header="Dividends" leftIcon="pi pi-table">
+                    <DividendsTabComponent tickerData={this.state.tickerData}
+                                           searchByTickerInput={this.state.searchByTickerInput}
+                                           updateTickerSearch={this.updateTickerSearch}/>
                 </TabPanel>
                 <TabPanel header="Ticker" leftIcon="pi pi-table">
                     <TickerComponent/>
