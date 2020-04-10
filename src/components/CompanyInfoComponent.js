@@ -13,10 +13,10 @@ class CompanyInfoComponent extends React.Component {
 
     componentDidMount() {
 
-        axios.get("http://localhost:8080/tickers/" + this.state.id)
+        axios.get("http://localhost:8080/company/" + this.state.id)
             .then(response => {
                 this.setState({
-                    ticker: response.data.ticker
+                    ticker: response.data.ticker_id
                 })
             })
     }
