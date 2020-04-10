@@ -2,11 +2,11 @@ import React from "react";
 import {TabPanel, TabView} from "primereact/tabview";
 import TickerComponent from "./TickerComponent";
 import axios from "axios"
-import OverviewTabComponent from "./OverviewTabComponent";
-import PerformanceTabComponent from "./PerformanceTabComponent";
-import KeyRatiosTabComponent from "./KeyRatiosTabComponent";
-import FinancialsTabComponent from "./FinancialsTabComponent";
-import DividendsTabComponent from "./DividendsTabComponent";
+import OverviewTabComponent from "./TableTabComponents/OverviewTabComponent";
+import PerformanceTabComponent from "./TableTabComponents/PerformanceTabComponent";
+import KeyRatiosTabComponent from "./TableTabComponents/KeyRatiosTabComponent";
+import FinancialsTabComponent from "./TableTabComponents/FinancialsTabComponent";
+import DividendsTabComponent from "./TableTabComponents/DividendsTabComponent";
 
 class ScreenerComponent extends React.Component {
 
