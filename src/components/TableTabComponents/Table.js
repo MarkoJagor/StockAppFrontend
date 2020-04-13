@@ -10,14 +10,21 @@ class Table extends React.Component {
     constructor() {
         super();
         this.state = {
-            selectedColumns: []
+            selectedColumns: [],
+            loading: true
         }
     }
 
     componentDidMount() {
+
         this.setState({
             selectedColumns: this.props.dynamicColumns
         })
+
+        setTimeout(() => this.setState({
+            loading: false
+        }), 500)
+
     }
 
     onColumnToggle = (event) => {
@@ -31,14 +38,7 @@ class Table extends React.Component {
             <a href={"screener/" + row.ticker_id} target="_blank" rel="noopener noreferrer">{row.ticker_id}</a>
         </div>
     }
-
-    columnBody = (row, column) => {
-        console.log(column)
-        if (row.employees === null && column.field === "employees") {
-            return <p>-</p>
-        }
-    }
-
+    
     render() {
 
         const searchByTicker = (
@@ -88,7 +88,8 @@ class Table extends React.Component {
 
 
             <DataTable value={this.props.tickerData} autoLayout={true} header={header}
-                       globalFilter={this.props.searchByTickerInput} emptyMessage="No records found">
+                       globalFilter={this.props.searchByTickerInput} emptyMessage="No records found"
+                       loading={this.state.loading}>
                 <Column field="ticker_id" header="Ticker" sortable={true} body={this.openCompanyInfoPage}/>
                 {dynamicColumns}
             </DataTable>
