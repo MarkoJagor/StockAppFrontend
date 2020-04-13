@@ -3,6 +3,7 @@ import {DataTable} from "primereact/datatable";
 import {Column} from "primereact/column";
 import {InputText} from "primereact/inputtext";
 import {MultiSelect} from "primereact/multiselect";
+import {setCellBody} from "./TableHelper";
 
 class Table extends React.Component {
 
@@ -26,10 +27,16 @@ class Table extends React.Component {
     };
 
     openCompanyInfoPage = (row) => {
-        console.log(row)
         return <div>
             <a href={"screener/" + row.ticker_id} target="_blank" rel="noopener noreferrer">{row.ticker_id}</a>
         </div>
+    }
+
+    columnBody = (row, column) => {
+        console.log(column)
+        if (row.employees === null && column.field === "employees") {
+            return <p>-</p>
+        }
     }
 
     render() {
@@ -66,16 +73,16 @@ class Table extends React.Component {
             </div>
         );
 
-
-        const dynamicColumns = this.state.selectedColumns.map((column) => {
+        const dynamicColumns = this.state.selectedColumns.map((column, i) => {
             return <Column
                 key={column.field}
                 field={column.field}
                 header={column.header}
                 sortable={column.sortable}
-                excludeGlobalFilter={column.excludeGlobalFilter}/>;
+                excludeGlobalFilter={column.excludeGlobalFilter}
+                style={column.style}
+                body={setCellBody}/>;
         });
-
 
         return (
 
