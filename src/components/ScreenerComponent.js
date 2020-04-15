@@ -1,20 +1,12 @@
 import React from "react";
-import {TabPanel, TabView} from "primereact/tabview";
-import TickerComponent from "./TickerComponent";
 import axios from "axios"
-import OverviewTabComponent from "./TableTabComponents/OverviewTabComponent";
-import PerformanceTabComponent from "./TableTabComponents/PerformanceTabComponent";
-import KeyRatiosTabComponent from "./TableTabComponents/KeyRatiosTabComponent";
-import FinancialsTabComponent from "./TableTabComponents/FinancialsTabComponent";
-import DividendsTabComponent from "./TableTabComponents/DividendsTabComponent";
+import TabsComponent from "./TableTabComponents/TabsComponent";
 
 class ScreenerComponent extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            searchByTickerInput: "",
-            activeIndex: 0,
             tickerData: [],
         }
     }
@@ -60,48 +52,10 @@ class ScreenerComponent extends React.Component {
             })
     }
 
-    updateTickerSearch = (value) => {
-        this.setState(
-            {searchByTickerInput: value}
-        )
-    }
-
-
     render() {
 
         return (
-
-            <TabView activeIndex={this.state.activeIndex} renderActiveOnly={false}
-                     onTabChange={(e) => this.setState({activeIndex: e.index})}>
-                <TabPanel header="Overview" leftIcon="pi pi-table">
-                    <OverviewTabComponent tickerData={this.state.tickerData}
-                                          searchByTickerInput={this.state.searchByTickerInput}
-                                          updateTickerSearch={this.updateTickerSearch}/>
-                </TabPanel>
-                <TabPanel header="Performance" leftIcon="pi pi-table">
-                    <PerformanceTabComponent tickerData={this.state.tickerData}
-                                             searchByTickerInput={this.state.searchByTickerInput}
-                                             updateTickerSearch={this.updateTickerSearch}/>
-                </TabPanel>
-                <TabPanel header="Key Ratios" leftIcon="pi pi-table">
-                    <KeyRatiosTabComponent tickerData={this.state.tickerData}
-                                           searchByTickerInput={this.state.searchByTickerInput}
-                                           updateTickerSearch={this.updateTickerSearch}/>
-                </TabPanel>
-                <TabPanel header="Financials" leftIcon="pi pi-table">
-                    <FinancialsTabComponent tickerData={this.state.tickerData}
-                                            searchByTickerInput={this.state.searchByTickerInput}
-                                            updateTickerSearch={this.updateTickerSearch}/>
-                </TabPanel>
-                <TabPanel header="Dividends" leftIcon="pi pi-table">
-                    <DividendsTabComponent tickerData={this.state.tickerData}
-                                           searchByTickerInput={this.state.searchByTickerInput}
-                                           updateTickerSearch={this.updateTickerSearch}/>
-                </TabPanel>
-                <TabPanel header="Ticker" leftIcon="pi pi-table">
-                    <TickerComponent/>
-                </TabPanel>
-            </TabView>
+            <TabsComponent tickerData={this.state.tickerData}/>
         )
     }
 }
