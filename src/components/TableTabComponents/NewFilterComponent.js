@@ -47,7 +47,9 @@ class NewFilterComponent extends React.Component {
         if (!this.props.show) {
             return null;
         }
-        
+
+        const positiveInputRegex = /^\d*[.]?\d*$/
+
         return (
             <div>
                 <Dialog header="Choose filters"
@@ -66,6 +68,7 @@ class NewFilterComponent extends React.Component {
                                    name="priceMin"
                                    onChange={this.handleChange}
                                    style={{margin: "0 5px", width: "100px"}}
+                                   keyfilter={positiveInputRegex}
                         />
                         -
                         <InputText id="priceMax"
@@ -73,6 +76,7 @@ class NewFilterComponent extends React.Component {
                                    name="priceMax"
                                    onChange={this.handleChange}
                                    style={{marginLeft: "5px", width: "100px"}}
+                                   keyfilter={positiveInputRegex}
                         />
                     </div>
                 </Dialog>
