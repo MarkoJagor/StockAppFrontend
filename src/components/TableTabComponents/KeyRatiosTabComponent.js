@@ -32,8 +32,12 @@ class KeyRatiosTabComponent extends React.Component {
         return (
             <Table dynamicColumns={this.state.dynamicColumns}
                    tickerData={this.props.tickerData}
+                   tableData={this.props.tableData}
+                   filterInputs={this.props.filterInputs}
                    searchByTickerInput={this.props.searchByTickerInput}
-                   updateTickerSearch={this.props.updateTickerSearch}/>
+                   updateTickerSearch={this.props.updateTickerSearch}
+                   filterTableData={this.props.filterTableData}
+                   handleFilterInputChange={this.props.handleFilterInputChange}/>
         )
     }
 }
