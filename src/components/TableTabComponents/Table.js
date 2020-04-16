@@ -4,6 +4,8 @@ import {Column} from "primereact/column";
 import {InputText} from "primereact/inputtext";
 import {MultiSelect} from "primereact/multiselect";
 import {setCellBody} from "./TableHelper";
+import {Button} from "primereact/button";
+import NewFilterComponent from "./NewFilterComponent";
 
 class Table extends React.Component {
 
@@ -11,14 +13,15 @@ class Table extends React.Component {
         super();
         this.state = {
             selectedColumns: [],
-            loading: true
+            loading: true,
+            show: false,
         }
     }
 
     componentDidMount() {
 
         this.setState({
-            selectedColumns: this.props.dynamicColumns
+            selectedColumns: this.props.dynamicColumns,
         })
 
         setTimeout(() => this.setState({
@@ -37,8 +40,15 @@ class Table extends React.Component {
         return <div>
             <a href={"screener/" + row.ticker_id} target="_blank" rel="noopener noreferrer">{row.ticker_id}</a>
         </div>
-    }
-    
+    };
+
+    showModal = () => {
+        this.setState({
+                show: !this.state.show
+            }
+        )
+    };
+
     render() {
 
         const searchByTicker = (
@@ -64,8 +74,23 @@ class Table extends React.Component {
                          onChange={this.onColumnToggle}/>
         );
 
+        const filter = (
+            <div>
+                <Button label="Filters" icon="pi pi-filter" onClick={this.showModal}/>
+                <NewFilterComponent show={this.state.show}
+                                    onClose={this.showModal}
+                                    tickerData={this.props.tickerData}
+                                    filterInputs={this.props.filterInputs}
+                                    filterTableData={this.props.filterTableData}
+                                    handleFilterInputChange={this.props.handleFilterInputChange}/>
+            </div>
+        );
+
         const header = (
             <div>
+                <div style={{float: "right"}}>
+                    {filter}
+                </div>
                 <div className="p-inputgroup">
                     {searchByTicker}
                     {toggleColumns}
@@ -80,14 +105,11 @@ class Table extends React.Component {
                 header={column.header}
                 sortable={column.sortable}
                 excludeGlobalFilter={column.excludeGlobalFilter}
-                style={column.style}
                 body={setCellBody}/>;
         });
 
         return (
-
-
-            <DataTable value={this.props.tickerData} autoLayout={true} header={header}
+            <DataTable value={this.props.tableData} autoLayout={true} header={header}
                        globalFilter={this.props.searchByTickerInput} emptyMessage="No records found"
                        loading={this.state.loading}>
                 <Column field="ticker_id" header="Ticker" sortable={true} body={this.openCompanyInfoPage}/>
