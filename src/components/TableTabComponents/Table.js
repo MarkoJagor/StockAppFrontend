@@ -5,7 +5,7 @@ import {InputText} from "primereact/inputtext";
 import {MultiSelect} from "primereact/multiselect";
 import {setCellBody} from "./TableHelper";
 import {Button} from "primereact/button";
-import NewFilterComponent from "./NewFilterComponent";
+import FilterComponent from "./FilterComponent";
 
 class Table extends React.Component {
 
@@ -77,13 +77,13 @@ class Table extends React.Component {
         const filter = (
             <div>
                 <Button label="Filters" icon="pi pi-filter" onClick={this.showModal}/>
-                <NewFilterComponent show={this.state.show}
-                                    onClose={this.showModal}
-                                    tickerData={this.props.tickerData}
-                                    filterInputs={this.props.filterInputs}
-                                    filterTableData={this.props.filterTableData}
-                                    handleFilterInputChange={this.props.handleFilterInputChange}
-                                    resetFilterInputs={this.props.resetFilterInputs}/>
+                <FilterComponent show={this.state.show}
+                                 onClose={this.showModal}
+                                 tickerData={this.props.tickerData}
+                                 filterInputs={this.props.filterInputs}
+                                 filterTableData={this.props.filterTableData}
+                                 handleFilterInputChange={this.props.handleFilterInputChange}
+                                 resetFilterInputs={this.props.resetFilterInputs}/>
             </div>
         );
 

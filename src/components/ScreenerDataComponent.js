@@ -1,8 +1,8 @@
 import React from "react";
-import axios from "axios"
+import axios from "axios";
 import TabsComponent from "./TableTabComponents/TabsComponent";
 
-class ScreenerComponent extends React.Component {
+class ScreenerDataComponent extends React.Component {
 
     constructor(props) {
         super(props);
@@ -60,4 +60,4 @@ class ScreenerComponent extends React.Component {
     }
 }
 
-export default ScreenerComponent
+export default ScreenerDataComponent

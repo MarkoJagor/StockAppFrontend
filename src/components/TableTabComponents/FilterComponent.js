@@ -4,7 +4,7 @@ import {Dialog} from "primereact/dialog";
 import styles from "../../componentStyles/FilterComponentStyle.module.css";
 import {InputText} from "primereact/inputtext";
 
-class NewFilterComponent extends React.Component {
+class FilterComponent extends React.Component {
 
     filterDivPerShare = (obj) => {
         const divPerShareMin = (this.props.filterInputs.divPerShareMin === "") ? 0 : this.props.filterInputs.divPerShareMin;
@@ -136,4 +136,4 @@ class NewFilterComponent extends React.Component {
     }
 }
 
-export default NewFilterComponent
+export default FilterComponent
