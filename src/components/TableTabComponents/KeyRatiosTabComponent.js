@@ -37,7 +37,8 @@ class KeyRatiosTabComponent extends React.Component {
                    searchByTickerInput={this.props.searchByTickerInput}
                    updateTickerSearch={this.props.updateTickerSearch}
                    filterTableData={this.props.filterTableData}
-                   handleFilterInputChange={this.props.handleFilterInputChange}/>
+                   handleFilterInputChange={this.props.handleFilterInputChange}
+                   resetFilterInputs={this.props.resetFilterInputs}/>
         )
     }
 }
