@@ -5,7 +5,6 @@ import PerformanceTabComponent from "./PerformanceTabComponent";
 import KeyRatiosTabComponent from "./KeyRatiosTabComponent";
 import FinancialsTabComponent from "./FinancialsTabComponent";
 import DividendsTabComponent from "./DividendsTabComponent";
-import TickerComponent from "../TickerComponent";
 
 class TabsComponent extends React.Component {
 
@@ -111,9 +110,6 @@ class TabsComponent extends React.Component {
                                            filterTableData={this.filterTableData}
                                            handleFilterInputChange={this.handleFilterInputChange}
                                            resetFilterInputs={this.resetFilterInputs}/>
-                </TabPanel>
-                <TabPanel header="Ticker" leftIcon="pi pi-table">
-                    <TickerComponent/>
                 </TabPanel>
             </TabView>
         )
