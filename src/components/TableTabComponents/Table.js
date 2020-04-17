@@ -82,7 +82,8 @@ class Table extends React.Component {
                                     tickerData={this.props.tickerData}
                                     filterInputs={this.props.filterInputs}
                                     filterTableData={this.props.filterTableData}
-                                    handleFilterInputChange={this.props.handleFilterInputChange}/>
+                                    handleFilterInputChange={this.props.handleFilterInputChange}
+                                    resetFilterInputs={this.props.resetFilterInputs}/>
             </div>
         );
 
