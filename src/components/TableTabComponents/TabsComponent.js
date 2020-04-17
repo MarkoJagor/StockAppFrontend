@@ -17,14 +17,18 @@ class TabsComponent extends React.Component {
             tableData: [],
             filterInputs: {
                 priceMin: "",
-                priceMax: ""
-            }
+                priceMax: "",
+                divPerShareMin: "",
+                divPerShareMax: ""
+            },
+            filterInputsClone: {}
         }
     }
 
     componentDidMount() {
         setTimeout(() => this.setState({
             tableData: this.props.tickerData,
+            filterInputsClone: this.state.filterInputs
         }), 500)
     }
 
@@ -47,6 +51,12 @@ class TabsComponent extends React.Component {
         })
     }
 
+    resetFilterInputs = () => {
+        this.setState({
+            filterInputs: this.state.filterInputsClone
+        })
+    }
+
     render() {
 
         return (
@@ -59,7 +69,8 @@ class TabsComponent extends React.Component {
                                           searchByTickerInput={this.state.searchByTickerInput}
                                           updateTickerSearch={this.updateTickerSearch}
                                           filterTableData={this.filterTableData}
-                                          handleFilterInputChange={this.handleFilterInputChange}/>
+                                          handleFilterInputChange={this.handleFilterInputChange}
+                                          resetFilterInputs={this.resetFilterInputs}/>
                 </TabPanel>
                 <TabPanel header="Performance" leftIcon="pi pi-table">
                     <PerformanceTabComponent tickerData={this.props.tickerData}
@@ -68,7 +79,8 @@ class TabsComponent extends React.Component {
                                              searchByTickerInput={this.state.searchByTickerInput}
                                              updateTickerSearch={this.updateTickerSearch}
                                              filterTableData={this.filterTableData}
-                                             handleFilterInputChange={this.handleFilterInputChange}/>
+                                             handleFilterInputChange={this.handleFilterInputChange}
+                                             resetFilterInputs={this.resetFilterInputs}/>
                 </TabPanel>
                 <TabPanel header="Key Ratios" leftIcon="pi pi-table">
                     <KeyRatiosTabComponent tickerData={this.props.tickerData}
@@ -77,7 +89,8 @@ class TabsComponent extends React.Component {
                                            searchByTickerInput={this.state.searchByTickerInput}
                                            updateTickerSearch={this.updateTickerSearch}
                                            filterTableData={this.filterTableData}
-                                           handleFilterInputChange={this.handleFilterInputChange}/>
+                                           handleFilterInputChange={this.handleFilterInputChange}
+                                           resetFilterInputs={this.resetFilterInputs}/>
                 </TabPanel>
                 <TabPanel header="Financials" leftIcon="pi pi-table">
                     <FinancialsTabComponent tickerData={this.props.tickerData}
@@ -86,7 +99,8 @@ class TabsComponent extends React.Component {
                                             searchByTickerInput={this.state.searchByTickerInput}
                                             updateTickerSearch={this.updateTickerSearch}
                                             filterTableData={this.filterTableData}
-                                            handleFilterInputChange={this.handleFilterInputChange}/>
+                                            handleFilterInputChange={this.handleFilterInputChange}
+                                            resetFilterInputs={this.resetFilterInputs}/>
                 </TabPanel>
                 <TabPanel header="Dividends" leftIcon="pi pi-table">
                     <DividendsTabComponent tickerData={this.props.tickerData}
@@ -95,7 +109,8 @@ class TabsComponent extends React.Component {
                                            searchByTickerInput={this.state.searchByTickerInput}
                                            updateTickerSearch={this.updateTickerSearch}
                                            filterTableData={this.filterTableData}
-                                           handleFilterInputChange={this.handleFilterInputChange}/>
+                                           handleFilterInputChange={this.handleFilterInputChange}
+                                           resetFilterInputs={this.resetFilterInputs}/>
                 </TabPanel>
                 <TabPanel header="Ticker" leftIcon="pi pi-table">
                     <TickerComponent/>
