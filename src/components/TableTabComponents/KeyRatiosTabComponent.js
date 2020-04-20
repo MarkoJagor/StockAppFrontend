@@ -12,7 +12,7 @@ class KeyRatiosTabComponent extends React.Component {
                 {field: "financialsQuarterly.eps_fy", header: "EPS (FY)", sortable: true, excludeGlobalFilter: true},
                 {field: "financialsQuarterly.eps_ttm", header: "EPS (TTM)", sortable: true, excludeGlobalFilter: true},
                 {field: "financialsQuarterly.eps_diluted_fy", header: "EPS Diluted (FY)", sortable: true, excludeGlobalFilter: true},
-                {field: "financialsQuarterly.eps_diluted", header: "EPS Diluted (TTM)", sortable: true, excludeGlobalFilter: true},
+                {field: "financialsQuarterly.eps_diluted_ttm", header: "EPS Diluted (TTM)", sortable: true, excludeGlobalFilter: true},
                 {field: "financialsQuarterly.current_ratio", header: "Current Ratio", sortable: true, excludeGlobalFilter: true},
                 {field: "financialsQuarterly.debt_to_equity", header: "Debt/Equity", sortable: true, excludeGlobalFilter: true},
                 {field: "financialsQuarterly.quick_ratio", header: "Quick Ratio", sortable: true, excludeGlobalFilter: true},
