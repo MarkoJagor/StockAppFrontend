@@ -409,36 +409,36 @@ class FilterComponent extends React.Component {
                             />
                         </p>
                         <p>
-                            Weekly Performance
-                            <InputText id="weeklyPerfMin"
-                                       value={this.props.filterInputs.weeklyPerfMin}
-                                       name="weeklyPerfMin"
+                            Volatility
+                            <InputText id="volatilityMin"
+                                       value={this.props.filterInputs.volatilityMin}
+                                       name="volatilityMin"
                                        onChange={this.handleChange}
                                        style={leftTextBox}
-                                       keyfilter={positiveAndNegativeInputRegex}
+                                       keyfilter={positiveInputRegex}
                             />
                             -
-                            <InputText id="weeklyPerfMax"
-                                       value={this.props.filterInputs.weeklyPerfMax}
-                                       name="weeklyPerfMax"
+                            <InputText id="volatilityMax"
+                                       value={this.props.filterInputs.volatilityMax}
+                                       name="volatilityMax"
                                        onChange={this.handleChange}
                                        style={rightTextBox}
-                                       keyfilter={positiveAndNegativeInputRegex}
+                                       keyfilter={positiveInputRegex}
                             />
                         </p>
                         <p>
-                            YTD Performance
-                            <InputText id="ytdPerfMin"
-                                       value={this.props.filterInputs.ytdPerfMin}
-                                       name="ytdPerfMin"
+                            Yearly Performance
+                            <InputText id="yearlyPerfMin"
+                                       value={this.props.filterInputs.yearlyPerfMin}
+                                       name="yearlyPerfMin"
                                        onChange={this.handleChange}
                                        style={leftTextBox}
                                        keyfilter={positiveAndNegativeInputRegex}
                             />
                             -
-                            <InputText id="ytdPerfMax"
-                                       value={this.props.filterInputs.ytdPerfMax}
-                                       name="ytdPerfMax"
+                            <InputText id="yearlyPerfMax"
+                                       value={this.props.filterInputs.yearlyPerfMax}
+                                       name="yearlyPerfMax"
                                        onChange={this.handleChange}
                                        style={rightTextBox}
                                        keyfilter={positiveAndNegativeInputRegex}
@@ -700,36 +700,36 @@ class FilterComponent extends React.Component {
                             />
                         </p>
                         <p>
-                            Volatility
-                            <InputText id="volatilityMin"
-                                       value={this.props.filterInputs.volatilityMin}
-                                       name="volatilityMin"
-                                       onChange={this.handleChange}
-                                       style={leftTextBox}
-                                       keyfilter={positiveInputRegex}
-                            />
-                            -
-                            <InputText id="volatilityMax"
-                                       value={this.props.filterInputs.volatilityMax}
-                                       name="volatilityMax"
-                                       onChange={this.handleChange}
-                                       style={rightTextBox}
-                                       keyfilter={positiveInputRegex}
-                            />
-                        </p>
-                        <p>
-                            Yearly Performance
-                            <InputText id="yearlyPerfMin"
-                                       value={this.props.filterInputs.yearlyPerfMin}
-                                       name="yearlyPerfMin"
+                            Weekly Performance
+                            <InputText id="weeklyPerfMin"
+                                       value={this.props.filterInputs.weeklyPerfMin}
+                                       name="weeklyPerfMin"
                                        onChange={this.handleChange}
                                        style={leftTextBox}
                                        keyfilter={positiveAndNegativeInputRegex}
                             />
                             -
-                            <InputText id="yearlyPerfMax"
-                                       value={this.props.filterInputs.yearlyPerfMax}
-                                       name="yearlyPerfMax"
+                            <InputText id="weeklyPerfMax"
+                                       value={this.props.filterInputs.weeklyPerfMax}
+                                       name="weeklyPerfMax"
+                                       onChange={this.handleChange}
+                                       style={rightTextBox}
+                                       keyfilter={positiveAndNegativeInputRegex}
+                            />
+                        </p>
+                        <p>
+                            YTD Performance
+                            <InputText id="ytdPerfMin"
+                                       value={this.props.filterInputs.ytdPerfMin}
+                                       name="ytdPerfMin"
+                                       onChange={this.handleChange}
+                                       style={leftTextBox}
+                                       keyfilter={positiveAndNegativeInputRegex}
+                            />
+                            -
+                            <InputText id="ytdPerfMax"
+                                       value={this.props.filterInputs.ytdPerfMax}
+                                       name="ytdPerfMax"
                                        onChange={this.handleChange}
                                        style={rightTextBox}
                                        keyfilter={positiveAndNegativeInputRegex}
