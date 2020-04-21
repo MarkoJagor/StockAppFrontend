@@ -27,6 +27,8 @@ class TabsComponent extends React.Component {
                 currentRatioMax: "",
                 debtToEquityMin: "",
                 debtToEquityMax: "",
+                divPerShareMin: "",
+                divPerShareMax: "",
                 divYieldMin: "",
                 divYieldMax: "",
                 epsFyMin: "",
@@ -57,8 +59,18 @@ class TabsComponent extends React.Component {
                 priceToRevMax: "",
                 quickRatioMin: "",
                 quickRatioMax: "",
-                divPerShareMin: "",
-                divPerShareMax: ""
+                roaMin: "",
+                roaMax: "",
+                roeMin: "",
+                roeMax: "",
+                volatilityMin: "",
+                volatilityMax: "",
+                weeklyPerfMin: "",
+                weeklyPerfMax: "",
+                yearlyPerfMin: "",
+                yearlyPerfMax: "",
+                ytdPerfMin: "",
+                ytdPerfMax: ""
             },
             filterInputsClone: {}
         }
