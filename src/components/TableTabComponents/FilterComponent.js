@@ -102,16 +102,40 @@ class FilterComponent extends React.Component {
         return this.positiveValuesFilter(obj, this.props.filterInputs.pretaxMrqMin, this.props.filterInputs.pretaxMrqMax, obj.financialsQuarterly.pretax_mrq)
     }
 
+    priceFilter = (obj) => {
+        return this.positiveValuesFilter(obj, this.props.filterInputs.priceMin, this.props.filterInputs.priceMax, obj.financialsDaily.price)
+    }
+
     priceToRevFilter = (obj) => {
         return this.positiveValuesFilter(obj, this.props.filterInputs.priceToRevMin, this.props.filterInputs.priceToRevMax, obj.financialsDaily.price_rev)
     }
 
     quickRatioFilter = (obj) => {
-        return this.positiveValuesFilter(obj, this.props.filterInputs.quickRatioMin, this.props.filterInputs.quickRatioMax, obj.financialsDaily.quick_ratio)
+        return this.positiveValuesFilter(obj, this.props.filterInputs.quickRatioMin, this.props.filterInputs.quickRatioMax, obj.financialsQuarterly.quick_ratio)
     }
 
-    priceFilter = (obj) => {
-        return this.positiveValuesFilter(obj, this.props.filterInputs.priceMin, this.props.filterInputs.priceMax, obj.financialsDaily.price)
+    roaFilter = (obj) => {
+        return this.positiveAndNegativeValuesFilter(obj, this.props.filterInputs.roaMin, this.props.filterInputs.roaMax, obj.financialsQuarterly.roa)
+    }
+
+    roeFilter = (obj) => {
+        return this.positiveAndNegativeValuesFilter(obj, this.props.filterInputs.roeMin, this.props.filterInputs.roeMax, obj.financialsQuarterly.roe)
+    }
+
+    volatilityFilter = (obj) => {
+        return this.positiveValuesFilter(obj, this.props.filterInputs.volatilityMin, this.props.filterInputs.volatilityMax, obj.financialsDaily.volatility)
+    }
+
+    weeklyPerfFilter = (obj) => {
+        return this.positiveAndNegativeValuesFilter(obj, this.props.filterInputs.weeklyPerfMin, this.props.filterInputs.weeklyPerfMax, obj.financialsDaily.weekly_perf)
+    }
+
+    yearlyPerfFilter = (obj) => {
+        return this.positiveAndNegativeValuesFilter(obj, this.props.filterInputs.yearlyPerfMin, this.props.filterInputs.yearlyPerfMax, obj.financialsDaily.yearly_perf)
+    }
+
+    ytdPerfFilter = (obj) => {
+        return this.positiveAndNegativeValuesFilter(obj, this.props.filterInputs.ytdPerfMin, this.props.filterInputs.ytdPerfMax, obj.financialsDaily.ytd_perf)
     }
 
     filterResult() {
@@ -119,7 +143,8 @@ class FilterComponent extends React.Component {
         const filters = [this.oneYearBetaFilter, this.threeMonthsPerfFilter, this.sixMonthsPerfFilter, this.chgFilter, this.currentRatioFilter,
             this.debtToEquityFilter, this.divPerShareFilter, this.divYieldFilter, this.epsFyFilter, this.epsTtmFilter, this.epsDilutedFyFilter, this.epsDilutedTtmFilter,
             this.grossMrqFilter, this.monthlyPerfFilter, this.netMrqFilter, this.operatingMrqFilter, this.pEFilter, this.pBFilter, this.pretaxMrqFilter,
-            this.priceToRevFilter, this.quickRatioFilter, this.priceFilter]
+            this.priceFilter, this.priceToRevFilter, this.quickRatioFilter, this.roaFilter, this.roeFilter, this.volatilityFilter, this.weeklyPerfFilter,
+            this.yearlyPerfFilter, this.ytdPerfFilter]
 
         setTimeout(() => {
             this.setState({
@@ -238,24 +263,7 @@ class FilterComponent extends React.Component {
                                        keyfilter={positiveAndNegativeInputRegex}
                             />
                         </p>
-                        <p>
-                            Price
-                            <InputText id="priceMin"
-                                       value={this.props.filterInputs.priceMin}
-                                       name="priceMin"
-                                       onChange={this.handleChange}
-                                       style={leftTextBox}
-                                       keyfilter={positiveInputRegex}
-                            />
-                            -
-                            <InputText id="priceMax"
-                                       value={this.props.filterInputs.priceMax}
-                                       name="priceMax"
-                                       onChange={this.handleChange}
-                                       style={rightTextBox}
-                                       keyfilter={positiveInputRegex}
-                            />
-                        </p>
+
                         <p>
                             Div Yield %
                             <InputText id="divYieldMin"
@@ -311,54 +319,54 @@ class FilterComponent extends React.Component {
                             />
                         </p>
                         <p>
-                            Net Margin %
-                            <InputText id="netMrqMin"
-                                       value={this.props.filterInputs.netMrqMin}
-                                       name="netMrqMin"
+                            Operating Margin %
+                            <InputText id="operatingMrqMin"
+                                       value={this.props.filterInputs.operatingMrqMin}
+                                       name="operatingMrqMin"
                                        onChange={this.handleChange}
                                        style={leftTextBox}
                                        keyfilter={positiveInputRegex}
                             />
                             -
-                            <InputText id="netMrqMax"
-                                       value={this.props.filterInputs.netMrqMax}
-                                       name="netMrqMax"
+                            <InputText id="operatingMrqMax"
+                                       value={this.props.filterInputs.operatingMrqMax}
+                                       name="operatingMrqMax"
                                        onChange={this.handleChange}
                                        style={rightTextBox}
                                        keyfilter={positiveInputRegex}
                             />
                         </p>
                         <p>
-                            P/E Ratio
-                            <InputText id="p_eMin"
-                                       value={this.props.filterInputs.p_eMin}
-                                       name="p_eMin"
+                            P/B Ratio
+                            <InputText id="p_bMin"
+                                       value={this.props.filterInputs.p_bMin}
+                                       name="p_bMin"
                                        onChange={this.handleChange}
                                        style={leftTextBox}
                                        keyfilter={positiveInputRegex}
                             />
                             -
-                            <InputText id="p_eMax"
-                                       value={this.props.filterInputs.p_eMax}
-                                       name="p_eMax"
+                            <InputText id="p_bMax"
+                                       value={this.props.filterInputs.p_bMax}
+                                       name="p_bMax"
                                        onChange={this.handleChange}
                                        style={rightTextBox}
                                        keyfilter={positiveInputRegex}
                             />
                         </p>
                         <p>
-                            Pretax Margin %
-                            <InputText id="pretaxMrqMin"
-                                       value={this.props.filterInputs.pretaxMrqMin}
-                                       name="pretaxMrqMin"
+                            Price
+                            <InputText id="priceMin"
+                                       value={this.props.filterInputs.priceMin}
+                                       name="priceMin"
                                        onChange={this.handleChange}
                                        style={leftTextBox}
                                        keyfilter={positiveInputRegex}
                             />
                             -
-                            <InputText id="pretaxMrqMax"
-                                       value={this.props.filterInputs.pretaxMrqMax}
-                                       name="pretaxMrqMax"
+                            <InputText id="priceMax"
+                                       value={this.props.filterInputs.priceMax}
+                                       name="priceMax"
                                        onChange={this.handleChange}
                                        style={rightTextBox}
                                        keyfilter={positiveInputRegex}
@@ -380,6 +388,60 @@ class FilterComponent extends React.Component {
                                        onChange={this.handleChange}
                                        style={rightTextBox}
                                        keyfilter={positiveInputRegex}
+                            />
+                        </p>
+                        <p>
+                            Return on Assets (TTM)
+                            <InputText id="roaMin"
+                                       value={this.props.filterInputs.roaMin}
+                                       name="roaMin"
+                                       onChange={this.handleChange}
+                                       style={leftTextBox}
+                                       keyfilter={positiveAndNegativeInputRegex}
+                            />
+                            -
+                            <InputText id="roaMax"
+                                       value={this.props.filterInputs.roaMax}
+                                       name="roaMax"
+                                       onChange={this.handleChange}
+                                       style={rightTextBox}
+                                       keyfilter={positiveAndNegativeInputRegex}
+                            />
+                        </p>
+                        <p>
+                            Weekly Performance
+                            <InputText id="weeklyPerfMin"
+                                       value={this.props.filterInputs.weeklyPerfMin}
+                                       name="weeklyPerfMin"
+                                       onChange={this.handleChange}
+                                       style={leftTextBox}
+                                       keyfilter={positiveAndNegativeInputRegex}
+                            />
+                            -
+                            <InputText id="weeklyPerfMax"
+                                       value={this.props.filterInputs.weeklyPerfMax}
+                                       name="weeklyPerfMax"
+                                       onChange={this.handleChange}
+                                       style={rightTextBox}
+                                       keyfilter={positiveAndNegativeInputRegex}
+                            />
+                        </p>
+                        <p>
+                            YTD Performance
+                            <InputText id="ytdPerfMin"
+                                       value={this.props.filterInputs.ytdPerfMin}
+                                       name="ytdPerfMin"
+                                       onChange={this.handleChange}
+                                       style={leftTextBox}
+                                       keyfilter={positiveAndNegativeInputRegex}
+                            />
+                            -
+                            <InputText id="ytdPerfMax"
+                                       value={this.props.filterInputs.ytdPerfMax}
+                                       name="ytdPerfMax"
+                                       onChange={this.handleChange}
+                                       style={rightTextBox}
+                                       keyfilter={positiveAndNegativeInputRegex}
                             />
                         </p>
                     </div>
@@ -548,36 +610,54 @@ class FilterComponent extends React.Component {
                             />
                         </p>
                         <p>
-                            Operating Margin %
-                            <InputText id="operatingMrqMin"
-                                       value={this.props.filterInputs.operatingMrqMin}
-                                       name="operatingMrqMin"
+                            Net Margin %
+                            <InputText id="netMrqMin"
+                                       value={this.props.filterInputs.netMrqMin}
+                                       name="netMrqMin"
                                        onChange={this.handleChange}
                                        style={leftTextBox}
                                        keyfilter={positiveInputRegex}
                             />
                             -
-                            <InputText id="operatingMrqMax"
-                                       value={this.props.filterInputs.operatingMrqMax}
-                                       name="operatingMrqMax"
+                            <InputText id="netMrqMax"
+                                       value={this.props.filterInputs.netMrqMax}
+                                       name="netMrqMax"
                                        onChange={this.handleChange}
                                        style={rightTextBox}
                                        keyfilter={positiveInputRegex}
                             />
                         </p>
                         <p>
-                            P/B Ratio
-                            <InputText id="p_bMin"
-                                       value={this.props.filterInputs.p_bMin}
-                                       name="p_bMin"
+                            P/E Ratio
+                            <InputText id="p_eMin"
+                                       value={this.props.filterInputs.p_eMin}
+                                       name="p_eMin"
                                        onChange={this.handleChange}
                                        style={leftTextBox}
                                        keyfilter={positiveInputRegex}
                             />
                             -
-                            <InputText id="p_bMax"
-                                       value={this.props.filterInputs.p_bMax}
-                                       name="p_bMax"
+                            <InputText id="p_eMax"
+                                       value={this.props.filterInputs.p_eMax}
+                                       name="p_eMax"
+                                       onChange={this.handleChange}
+                                       style={rightTextBox}
+                                       keyfilter={positiveInputRegex}
+                            />
+                        </p>
+                        <p>
+                            Pretax Margin %
+                            <InputText id="pretaxMrqMin"
+                                       value={this.props.filterInputs.pretaxMrqMin}
+                                       name="pretaxMrqMin"
+                                       onChange={this.handleChange}
+                                       style={leftTextBox}
+                                       keyfilter={positiveInputRegex}
+                            />
+                            -
+                            <InputText id="pretaxMrqMax"
+                                       value={this.props.filterInputs.pretaxMrqMax}
+                                       name="pretaxMrqMax"
                                        onChange={this.handleChange}
                                        style={rightTextBox}
                                        keyfilter={positiveInputRegex}
@@ -599,6 +679,60 @@ class FilterComponent extends React.Component {
                                        onChange={this.handleChange}
                                        style={rightTextBox}
                                        keyfilter={positiveInputRegex}
+                            />
+                        </p>
+                        <p>
+                            Return on Equity (TTM)
+                            <InputText id="roeMin"
+                                       value={this.props.filterInputs.roeMin}
+                                       name="roeMin"
+                                       onChange={this.handleChange}
+                                       style={leftTextBox}
+                                       keyfilter={positiveAndNegativeInputRegex}
+                            />
+                            -
+                            <InputText id="roeMax"
+                                       value={this.props.filterInputs.roeMax}
+                                       name="roeMax"
+                                       onChange={this.handleChange}
+                                       style={rightTextBox}
+                                       keyfilter={positiveAndNegativeInputRegex}
+                            />
+                        </p>
+                        <p>
+                            Volatility
+                            <InputText id="volatilityMin"
+                                       value={this.props.filterInputs.volatilityMin}
+                                       name="volatilityMin"
+                                       onChange={this.handleChange}
+                                       style={leftTextBox}
+                                       keyfilter={positiveInputRegex}
+                            />
+                            -
+                            <InputText id="volatilityMax"
+                                       value={this.props.filterInputs.volatilityMax}
+                                       name="volatilityMax"
+                                       onChange={this.handleChange}
+                                       style={rightTextBox}
+                                       keyfilter={positiveInputRegex}
+                            />
+                        </p>
+                        <p>
+                            Yearly Performance
+                            <InputText id="yearlyPerfMin"
+                                       value={this.props.filterInputs.yearlyPerfMin}
+                                       name="yearlyPerfMin"
+                                       onChange={this.handleChange}
+                                       style={leftTextBox}
+                                       keyfilter={positiveAndNegativeInputRegex}
+                            />
+                            -
+                            <InputText id="yearlyPerfMax"
+                                       value={this.props.filterInputs.yearlyPerfMax}
+                                       name="yearlyPerfMax"
+                                       onChange={this.handleChange}
+                                       style={rightTextBox}
+                                       keyfilter={positiveAndNegativeInputRegex}
                             />
                         </p>
                     </div>
