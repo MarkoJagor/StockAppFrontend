@@ -24,7 +24,7 @@ class FilterComponent extends React.Component {
             return (objectValue + 1)
         })) : maxValue;
 
-        return (minValue !== "" || maxValue !== "") ? (objectValue > min && objectValue < max) : obj
+        return (minValue !== "" || maxValue !== "") ? (objectValue !== null && objectValue > min && objectValue < max) : obj
     }
 
     sliderValuesFilter = (obj, rangeArray, minValue, maxValue, objectValue) => {
@@ -32,7 +32,7 @@ class FilterComponent extends React.Component {
         const min = (rangeArray[0] === minValue) ? minValue * multiplier : rangeArray[0] * multiplier;
         const max = (rangeArray[1] === maxValue) ? maxValue * multiplier : rangeArray[1] * multiplier;
 
-        return (minValue !== rangeArray[0] || maxValue !== rangeArray[1]) ? (objectValue > min && objectValue < max) : obj
+        return (minValue !== rangeArray[0] || maxValue !== rangeArray[1]) ? (objectValue !== null && objectValue > min && objectValue < max) : obj
     }
 
     oneYearBetaFilter = (obj) => {
@@ -87,6 +87,10 @@ class FilterComponent extends React.Component {
         return this.positiveValuesFilter(obj, this.props.filterInputs.divYieldMin, this.props.filterInputs.divYieldMax, obj.financialsDaily.div_yield)
     }
 
+    ebitdaFilter = (obj) => {
+        return this.sliderValuesFilter(obj, this.props.filterInputs.ebitdaRange, 0, 1000, obj.financialsQuarterly.ebitda)
+    }
+
     epsFyFilter = (obj) => {
         return this.positiveAndNegativeValuesFilter(obj, this.props.filterInputs.epsFyMin, this.props.filterInputs.epsFyMax, obj.financialsQuarterly.eps_fy)
     }
@@ -103,8 +107,32 @@ class FilterComponent extends React.Component {
         return this.positiveAndNegativeValuesFilter(obj, this.props.filterInputs.epsDilutedTtmMin, this.props.filterInputs.epsDilutedTtmMax, obj.financialsQuarterly.eps_diluted_ttm)
     }
 
+    evFilter = (obj) => {
+        return this.sliderValuesFilter(obj, this.props.filterInputs.evRange, -2000, 2000, obj.financialsDaily.ev)
+    }
+
     grossMrqFilter = (obj) => {
         return this.positiveValuesFilter(obj, this.props.filterInputs.grossMrqMin, this.props.filterInputs.grossMrqMax, obj.financialsQuarterly.gross_mrq)
+    }
+
+    grossProfitFyFilter = (obj) => {
+        return this.sliderValuesFilter(obj, this.props.filterInputs.grossProfitFyRange, -200, 200, obj.financialsQuarterly.gross_profit_fy)
+    }
+
+    grossProfitMrqFilter = (obj) => {
+        return this.sliderValuesFilter(obj, this.props.filterInputs.grossProfitMrqRange, -200, 200, obj.financialsQuarterly.gross_profit_mrq)
+    }
+
+    incomeFilter = (obj) => {
+        return this.sliderValuesFilter(obj, this.props.filterInputs.incomeRange, -100, 100, obj.financialsQuarterly.income)
+    }
+
+    mktCapFilter = (obj) => {
+        return this.sliderValuesFilter(obj, this.props.filterInputs.mktCapRange, 0, 2000, obj.financialsDaily.mkt_cap)
+    }
+
+    netDebtFilter = (obj) => {
+        return this.sliderValuesFilter(obj, this.props.filterInputs.netDebtRange, -2000, 2000, obj.financialsQuarterly.net_debt)
     }
 
     monthlyPerfFilter = (obj) => {
@@ -143,12 +171,20 @@ class FilterComponent extends React.Component {
         return this.positiveValuesFilter(obj, this.props.filterInputs.quickRatioMin, this.props.filterInputs.quickRatioMax, obj.financialsQuarterly.quick_ratio)
     }
 
+    revenueFilter = (obj) => {
+        return this.sliderValuesFilter(obj, this.props.filterInputs.revenueRange, 0, 2000, obj.financialsQuarterly.revenue)
+    }
+
     roaFilter = (obj) => {
         return this.positiveAndNegativeValuesFilter(obj, this.props.filterInputs.roaMin, this.props.filterInputs.roaMax, obj.financialsQuarterly.roa)
     }
 
     roeFilter = (obj) => {
         return this.positiveAndNegativeValuesFilter(obj, this.props.filterInputs.roeMin, this.props.filterInputs.roeMax, obj.financialsQuarterly.roe)
+    }
+
+    sharesFilter = (obj) => {
+        return this.sliderValuesFilter(obj, this.props.filterInputs.sharesRange, 0, 1000, obj.financialsQuarterly.shares)
     }
 
     volatilityFilter = (obj) => {
@@ -167,13 +203,15 @@ class FilterComponent extends React.Component {
         return this.positiveAndNegativeValuesFilter(obj, this.props.filterInputs.ytdPerfMin, this.props.filterInputs.ytdPerfMax, obj.financialsDaily.ytd_perf)
     }
 
+
     filterResult() {
 
         const filters = [this.oneYearBetaFilter, this.threeMonthsPerfFilter, this.annualRevenueFilter, this.assetsFilter, this.currentAssetsFilter, this.debtFilter,
-            this.divPaidFilter, this.sixMonthsPerfFilter, this.chgFilter, this.currentRatioFilter,
-            this.debtToEquityFilter, this.divPerShareFilter, this.divYieldFilter, this.epsFyFilter, this.epsTtmFilter, this.epsDilutedFyFilter, this.epsDilutedTtmFilter,
-            this.grossMrqFilter, this.monthlyPerfFilter, this.netMrqFilter, this.operatingMrqFilter, this.pEFilter, this.pBFilter, this.pretaxMrqFilter,
-            this.priceFilter, this.priceToRevFilter, this.quickRatioFilter, this.roaFilter, this.roeFilter, this.volatilityFilter, this.weeklyPerfFilter,
+            this.divPaidFilter, this.sixMonthsPerfFilter, this.chgFilter, this.currentRatioFilter, this.debtToEquityFilter, this.divPerShareFilter,
+            this.divYieldFilter, this.ebitdaFilter, this.epsFyFilter, this.epsTtmFilter, this.epsDilutedFyFilter, this.epsDilutedTtmFilter, this.evFilter,
+            this.grossMrqFilter, this.grossProfitFyFilter, this.grossProfitMrqFilter, this.incomeFilter, this.mktCapFilter, this.netDebtFilter, this.monthlyPerfFilter,
+            this.netMrqFilter, this.operatingMrqFilter, this.pEFilter, this.pBFilter, this.pretaxMrqFilter, this.priceFilter, this.priceToRevFilter,
+            this.quickRatioFilter, this.revenueFilter, this.roaFilter, this.roeFilter, this.sharesFilter, this.volatilityFilter, this.weeklyPerfFilter,
             this.yearlyPerfFilter, this.ytdPerfFilter]
 
 
@@ -251,12 +289,12 @@ class FilterComponent extends React.Component {
         }
 
         const rightColumnSlider = {
-            width: "60%",
+            width: "65%",
             float: "right"
         }
 
         const leftColumnSlider = {
-            width: "60%"
+            width: "65%"
         }
 
         const RangeSlider = (header, rangeArray, rangeArrayString, step, min, max, style) => (
@@ -390,6 +428,14 @@ class FilterComponent extends React.Component {
                                        keyfilter={positiveAndNegativeInputRegex}
                             />
                         </p>
+                        {RangeSlider("Gross Profit (FY)", this.props.filterInputs.grossProfitFyRange, "grossProfitFyRange",
+                            25, -200, 200, leftColumnSlider)}
+                        {RangeSlider("Income", this.props.filterInputs.incomeRange, "incomeRange",
+                            5, -100, 100, leftColumnSlider)}
+                        {RangeSlider("Market Cap", this.props.filterInputs.mktCapRange, "mktCapRange",
+                            50, 0, 2000, leftColumnSlider)}
+                        {RangeSlider("Net Debt", this.props.filterInputs.netDebtRange, "netDebtRange",
+                            50, -2000, 2000, leftColumnSlider)}
                         <p>
                             Operating Margin %
                             <InputText id="operatingMrqMin"
@@ -611,6 +657,8 @@ class FilterComponent extends React.Component {
                                        keyfilter={positiveInputRegex}
                             />
                         </p>
+                        {RangeSlider("EBITDA", this.props.filterInputs.ebitdaRange, "ebitdaRange",
+                            25, 0, 1000, rightColumnSlider)}
                         <p>
                             EPS (FY)
                             <InputText id="epsFyMin"
@@ -647,6 +695,8 @@ class FilterComponent extends React.Component {
                                        keyfilter={positiveAndNegativeInputRegex}
                             />
                         </p>
+                        {RangeSlider("Enterprise Value", this.props.filterInputs.evRange, "evRange",
+                            50, -2000, 2000, rightColumnSlider)}
                         <p>
                             Gross Margin %
                             <InputText id="grossMrqMin"
@@ -665,6 +715,8 @@ class FilterComponent extends React.Component {
                                        keyfilter={positiveInputRegex}
                             />
                         </p>
+                        {RangeSlider("Gross Profit (MRQ)", this.props.filterInputs.grossProfitMrqRange, "grossProfitMrqRange",
+                            25, -200, 200, rightColumnSlider)}
                         <p>
                             Monthly Performance
                             <InputText id="monthlyPerfMin"
@@ -755,6 +807,8 @@ class FilterComponent extends React.Component {
                                        keyfilter={positiveInputRegex}
                             />
                         </p>
+                        {RangeSlider("Revenue", this.props.filterInputs.revenueRange, "revenueRange",
+                            50, 0, 2000, rightColumnSlider)}
                         <p>
                             Return on Equity (TTM)
                             <InputText id="roeMin"
@@ -773,6 +827,8 @@ class FilterComponent extends React.Component {
                                        keyfilter={positiveAndNegativeInputRegex}
                             />
                         </p>
+                        {RangeSlider("Number of Shares", this.props.filterInputs.sharesRange, "sharesRange",
+                            50, 0, 1000, rightColumnSlider)}
                         <p>
                             Weekly Performance
                             <InputText id="weeklyPerfMin"
