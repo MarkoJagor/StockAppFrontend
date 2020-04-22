@@ -25,6 +25,7 @@ class DividendsTabComponent extends React.Component {
                    updateTickerSearch={this.props.updateTickerSearch}
                    filterTableData={this.props.filterTableData}
                    handleFilterInputChange={this.props.handleFilterInputChange}
+                   handleRangeSliderChange={this.props.handleRangeSliderChange}
                    resetFilterInputs={this.props.resetFilterInputs}/>
         )
     }

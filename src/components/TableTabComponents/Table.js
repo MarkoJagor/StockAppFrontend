@@ -83,6 +83,7 @@ class Table extends React.Component {
                                  filterInputs={this.props.filterInputs}
                                  filterTableData={this.props.filterTableData}
                                  handleFilterInputChange={this.props.handleFilterInputChange}
+                                 handleRangeSliderChange={this.props.handleRangeSliderChange}
                                  resetFilterInputs={this.props.resetFilterInputs}/>
             </div>
         );
