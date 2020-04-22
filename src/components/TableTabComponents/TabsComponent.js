@@ -21,6 +21,11 @@ class TabsComponent extends React.Component {
                 threeMonthPerfMax: "",
                 sixMonthPerfMin: "",
                 sixMonthPerfMax: "",
+                annualRevenueRange: [0, 2000],
+                assetsRange: [0, 5000],
+                currentAssetsRange: [0, 1000],
+                debtRange: [0, 1000],
+                divPaidRange: [-100, 0],
                 chgMin: "",
                 chgMax: "",
                 currentRatioMin: "",
@@ -102,6 +107,15 @@ class TabsComponent extends React.Component {
         })
     }
 
+    handleRangeSliderChange = (sliderName, value) => {
+        this.setState({
+            filterInputs: {
+                ...this.state.filterInputs,
+                [sliderName]: value,
+            }
+        })
+    }
+
     resetFilterInputs = () => {
         this.setState({
             filterInputs: this.state.filterInputsClone
@@ -121,6 +135,7 @@ class TabsComponent extends React.Component {
                                           updateTickerSearch={this.updateTickerSearch}
                                           filterTableData={this.filterTableData}
                                           handleFilterInputChange={this.handleFilterInputChange}
+                                          handleRangeSliderChange={this.handleRangeSliderChange}
                                           resetFilterInputs={this.resetFilterInputs}/>
                 </TabPanel>
                 <TabPanel header="Performance" leftIcon="pi pi-table">
@@ -131,6 +146,7 @@ class TabsComponent extends React.Component {
                                              updateTickerSearch={this.updateTickerSearch}
                                              filterTableData={this.filterTableData}
                                              handleFilterInputChange={this.handleFilterInputChange}
+                                             handleRangeSliderChange={this.handleRangeSliderChange}
                                              resetFilterInputs={this.resetFilterInputs}/>
                 </TabPanel>
                 <TabPanel header="Key Ratios" leftIcon="pi pi-table">
@@ -141,6 +157,7 @@ class TabsComponent extends React.Component {
                                            updateTickerSearch={this.updateTickerSearch}
                                            filterTableData={this.filterTableData}
                                            handleFilterInputChange={this.handleFilterInputChange}
+                                           handleRangeSliderChange={this.handleRangeSliderChange}
                                            resetFilterInputs={this.resetFilterInputs}/>
                 </TabPanel>
                 <TabPanel header="Financials" leftIcon="pi pi-table">
@@ -151,6 +168,7 @@ class TabsComponent extends React.Component {
                                             updateTickerSearch={this.updateTickerSearch}
                                             filterTableData={this.filterTableData}
                                             handleFilterInputChange={this.handleFilterInputChange}
+                                            handleRangeSliderChange={this.handleRangeSliderChange}
                                             resetFilterInputs={this.resetFilterInputs}/>
                 </TabPanel>
                 <TabPanel header="Dividends" leftIcon="pi pi-table">
@@ -161,6 +179,7 @@ class TabsComponent extends React.Component {
                                            updateTickerSearch={this.updateTickerSearch}
                                            filterTableData={this.filterTableData}
                                            handleFilterInputChange={this.handleFilterInputChange}
+                                           handleRangeSliderChange={this.handleRangeSliderChange}
                                            resetFilterInputs={this.resetFilterInputs}/>
                 </TabPanel>
             </TabView>
