@@ -3,6 +3,7 @@ import {Button} from "primereact/button";
 import {Dialog} from "primereact/dialog";
 import styles from "../../componentStyles/FilterComponentStyle.module.css";
 import {InputText} from "primereact/inputtext";
+import {Slider} from "primereact/slider";
 
 class FilterComponent extends React.Component {
 
@@ -26,12 +27,40 @@ class FilterComponent extends React.Component {
         return (minValue !== "" || maxValue !== "") ? (objectValue > min && objectValue < max) : obj
     }
 
+    sliderValuesFilter = (obj, rangeArray, minValue, maxValue, objectValue) => {
+        const multiplier = 1000
+        const min = (rangeArray[0] === minValue) ? minValue * multiplier : rangeArray[0] * multiplier;
+        const max = (rangeArray[1] === maxValue) ? maxValue * multiplier : rangeArray[1] * multiplier;
+
+        return (minValue !== rangeArray[0] || maxValue !== rangeArray[1]) ? (objectValue > min && objectValue < max) : obj
+    }
+
     oneYearBetaFilter = (obj) => {
         return this.positiveValuesFilter(obj, this.props.filterInputs.oneYearBetaMin, this.props.filterInputs.oneYearBetaMax, obj.financialsDaily.one_year_beta)
     }
 
     threeMonthsPerfFilter = (obj) => {
         return this.positiveAndNegativeValuesFilter(obj, this.props.filterInputs.threeMonthPerfMin, this.props.filterInputs.threeMonthPerfMax, obj.financialsDaily.three_month_perf)
+    }
+
+    annualRevenueFilter = (obj) => {
+        return this.sliderValuesFilter(obj, this.props.filterInputs.annualRevenueRange, 0, 2000, obj.financialsQuarterly.annual_revenue)
+    }
+
+    assetsFilter = (obj) => {
+        return this.sliderValuesFilter(obj, this.props.filterInputs.assetsRange, 0, 5000, obj.financialsQuarterly.assets)
+    }
+
+    currentAssetsFilter = (obj) => {
+        return this.sliderValuesFilter(obj, this.props.filterInputs.currentAssetsRange, 0, 1000, obj.financialsQuarterly.current_assets)
+    }
+
+    debtFilter = (obj) => {
+        return this.sliderValuesFilter(obj, this.props.filterInputs.debtRange, 0, 1000, obj.financialsQuarterly.debt)
+    }
+
+    divPaidFilter = (obj) => {
+        return this.sliderValuesFilter(obj, this.props.filterInputs.divPaidRange, -100, 0, obj.financialsQuarterly.div_paid)
     }
 
     sixMonthsPerfFilter = (obj) => {
@@ -140,11 +169,13 @@ class FilterComponent extends React.Component {
 
     filterResult() {
 
-        const filters = [this.oneYearBetaFilter, this.threeMonthsPerfFilter, this.sixMonthsPerfFilter, this.chgFilter, this.currentRatioFilter,
+        const filters = [this.oneYearBetaFilter, this.threeMonthsPerfFilter, this.annualRevenueFilter, this.assetsFilter, this.currentAssetsFilter, this.debtFilter,
+            this.divPaidFilter, this.sixMonthsPerfFilter, this.chgFilter, this.currentRatioFilter,
             this.debtToEquityFilter, this.divPerShareFilter, this.divYieldFilter, this.epsFyFilter, this.epsTtmFilter, this.epsDilutedFyFilter, this.epsDilutedTtmFilter,
             this.grossMrqFilter, this.monthlyPerfFilter, this.netMrqFilter, this.operatingMrqFilter, this.pEFilter, this.pBFilter, this.pretaxMrqFilter,
             this.priceFilter, this.priceToRevFilter, this.quickRatioFilter, this.roaFilter, this.roeFilter, this.volatilityFilter, this.weeklyPerfFilter,
             this.yearlyPerfFilter, this.ytdPerfFilter]
+
 
         setTimeout(() => {
             this.setState({
@@ -165,6 +196,11 @@ class FilterComponent extends React.Component {
 
     handleChange = e => {
         this.props.handleFilterInputChange && this.props.handleFilterInputChange(e)
+        this.filterResult()
+    };
+
+    handleSliderChange = (name, value) => {
+        this.props.handleRangeSliderChange && this.props.handleRangeSliderChange(name, value)
         this.filterResult()
     };
 
@@ -214,11 +250,40 @@ class FilterComponent extends React.Component {
             width: "100px"
         }
 
+        const rightColumnSlider = {
+            width: "60%",
+            float: "right"
+        }
+
+        const leftColumnSlider = {
+            width: "60%"
+        }
+
+        const RangeSlider = (header, rangeArray, rangeArrayString, step, min, max, style) => (
+            <div>
+                <p>
+                    {header}: {rangeArray[0]}M - {rangeArray[1]}M
+                    <br/>
+                </p>
+                <Slider id={rangeArrayString}
+                        value={rangeArray}
+                        onChange={(e) => this.handleSliderChange(
+                            rangeArrayString, e.value
+                        )}
+                        step={step}
+                        range={true}
+                        min={min}
+                        max={max}
+                        style={style}/>
+                <br/>
+            </div>
+        )
+
         return (
             <div>
                 <Dialog header="Choose filters"
                         visible={this.props.show}
-                        style={{width: '60%'}}
+                        style={{width: '70%'}}
                         modal={true}
                         onHide={e => {
                             this.onClose(e)
@@ -263,7 +328,14 @@ class FilterComponent extends React.Component {
                                        keyfilter={positiveAndNegativeInputRegex}
                             />
                         </p>
-
+                        {RangeSlider("Assets", this.props.filterInputs.assetsRange, "assetsRange",
+                            25, 0, 5000, leftColumnSlider)}
+                        {RangeSlider("Current Assets", this.props.filterInputs.currentAssetsRange, "currentAssetsRange",
+                            25, 0, 1000, leftColumnSlider)}
+                        {RangeSlider("Debt", this.props.filterInputs.debtRange, "debtRange",
+                            25, 0, 1000, leftColumnSlider)}
+                        {RangeSlider("Dividends Paid", this.props.filterInputs.divPaidRange, "divPaidRange",
+                            5, -100, 0, leftColumnSlider)}
                         <p>
                             Div Yield %
                             <InputText id="divYieldMin"
@@ -465,6 +537,8 @@ class FilterComponent extends React.Component {
                                        keyfilter={positiveAndNegativeInputRegex}
                             />
                         </p>
+                        {RangeSlider("Annual Revenue", this.props.filterInputs.annualRevenueRange, "annualRevenueRange",
+                            25, 0, 2000, rightColumnSlider)}
                         <p>
                             Change %
                             <InputText id="chgMin"
