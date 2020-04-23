@@ -38,7 +38,11 @@ class Table extends React.Component {
 
     openCompanyInfoPage = (row) => {
         return <div>
-            <a href={"screener/" + row.ticker_id} target="_blank" rel="noopener noreferrer">{row.ticker_id}</a>
+            <a href={"screener/" + row.ticker_id}
+               target="_blank"
+               rel="noopener noreferrer">
+                {row.ticker_id}
+            </a>
         </div>
     };
 
@@ -53,7 +57,8 @@ class Table extends React.Component {
 
         const searchByTicker = (
             <div style={{textAlign: 'left'}}>
-                <i className="pi pi-search" style={{margin: '4px 10px 0 0'}}/>
+                <i className="pi pi-search"
+                   style={{margin: '4px 10px 0 0'}}/>
                 <InputText type="search"
                            onChange={(e) => {
                                this.props.updateTickerSearch(e.target.value)
@@ -76,7 +81,9 @@ class Table extends React.Component {
 
         const filter = (
             <div>
-                <Button label="Filters" icon="pi pi-filter" onClick={this.showModal}/>
+                <Button label="Filters"
+                        icon="pi pi-filter"
+                        onClick={this.showModal}/>
                 <FilterComponent show={this.state.show}
                                  onClose={this.showModal}
                                  tickerData={this.props.tickerData}
@@ -100,7 +107,7 @@ class Table extends React.Component {
             </div>
         );
 
-        const dynamicColumns = this.state.selectedColumns.map((column, i) => {
+        const dynamicColumns = this.state.selectedColumns.map((column) => {
             return <Column
                 key={column.field}
                 field={column.field}
@@ -111,10 +118,17 @@ class Table extends React.Component {
         });
 
         return (
-            <DataTable value={this.props.tableData} autoLayout={true} header={header}
-                       globalFilter={this.props.searchByTickerInput} emptyMessage="No records found"
+            <DataTable value={this.props.tableData}
+                       autoLayout={true}
+                       header={header}
+                       globalFilter={this.props.searchByTickerInput}
+                       emptyMessage="No records found"
                        loading={this.state.loading}>
-                <Column field="ticker_id" header="Ticker" sortable={true} body={this.openCompanyInfoPage}/>
+                <Column
+                    field="ticker_id"
+                    header="Ticker"
+                    sortable={true}
+                    body={this.openCompanyInfoPage}/>
                 {dynamicColumns}
             </DataTable>
         )
