@@ -46,6 +46,8 @@ class TabsComponent extends React.Component {
                 epsDilutedTtmMin: "",
                 epsDilutedTtmMax: "",
                 evRange: [-2000, 2000],
+                evEbitdaMin: "",
+                evEbitdaMax: "",
                 grossMrqMin: "",
                 grossMrqMax: "",
                 grossProfitFyRange: [-200, 200],

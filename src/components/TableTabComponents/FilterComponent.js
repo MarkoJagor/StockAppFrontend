@@ -43,6 +43,10 @@ class FilterComponent extends React.Component {
         return this.positiveAndNegativeValuesFilter(obj, this.props.filterInputs.threeMonthPerfMin, this.props.filterInputs.threeMonthPerfMax, obj.financialsDaily.three_month_perf)
     }
 
+    sixMonthsPerfFilter = (obj) => {
+        return this.positiveAndNegativeValuesFilter(obj, this.props.filterInputs.sixMonthPerfMin, this.props.filterInputs.sixMonthPerfMax, obj.financialsDaily.six_month_perf)
+    }
+
     annualRevenueFilter = (obj) => {
         return this.sliderValuesFilter(obj, this.props.filterInputs.annualRevenueRange, 0, 2000, obj.financialsQuarterly.annual_revenue)
     }
@@ -51,32 +55,28 @@ class FilterComponent extends React.Component {
         return this.sliderValuesFilter(obj, this.props.filterInputs.assetsRange, 0, 5000, obj.financialsQuarterly.assets)
     }
 
-    currentAssetsFilter = (obj) => {
-        return this.sliderValuesFilter(obj, this.props.filterInputs.currentAssetsRange, 0, 1000, obj.financialsQuarterly.current_assets)
-    }
-
-    debtFilter = (obj) => {
-        return this.sliderValuesFilter(obj, this.props.filterInputs.debtRange, 0, 1000, obj.financialsQuarterly.debt)
-    }
-
-    divPaidFilter = (obj) => {
-        return this.sliderValuesFilter(obj, this.props.filterInputs.divPaidRange, -100, 0, obj.financialsQuarterly.div_paid)
-    }
-
-    sixMonthsPerfFilter = (obj) => {
-        return this.positiveAndNegativeValuesFilter(obj, this.props.filterInputs.sixMonthPerfMin, this.props.filterInputs.sixMonthPerfMax, obj.financialsDaily.six_month_perf)
-    }
-
     chgFilter = (obj) => {
         return this.positiveAndNegativeValuesFilter(obj, this.props.filterInputs.chgMin, this.props.filterInputs.chgMax, obj.financialsDaily.chg)
+    }
+
+    currentAssetsFilter = (obj) => {
+        return this.sliderValuesFilter(obj, this.props.filterInputs.currentAssetsRange, 0, 1000, obj.financialsQuarterly.current_assets)
     }
 
     currentRatioFilter = (obj) => {
         return this.positiveValuesFilter(obj, this.props.filterInputs.currentRatioMin, this.props.filterInputs.currentRatioMax, obj.financialsQuarterly.current_ratio)
     }
 
+    debtFilter = (obj) => {
+        return this.sliderValuesFilter(obj, this.props.filterInputs.debtRange, 0, 1000, obj.financialsQuarterly.debt)
+    }
+
     debtToEquityFilter = (obj) => {
         return this.positiveValuesFilter(obj, this.props.filterInputs.debtToEquityMin, this.props.filterInputs.debtToEquityMax, obj.financialsQuarterly.debt_to_equity)
+    }
+
+    divPaidFilter = (obj) => {
+        return this.sliderValuesFilter(obj, this.props.filterInputs.divPaidRange, -100, 0, obj.financialsQuarterly.div_paid)
     }
 
     divPerShareFilter = (obj) => {
@@ -111,6 +111,10 @@ class FilterComponent extends React.Component {
         return this.sliderValuesFilter(obj, this.props.filterInputs.evRange, -2000, 2000, obj.financialsDaily.ev)
     }
 
+    evEbitdaFilter = (obj) => {
+        return this.positiveAndNegativeValuesFilter(obj, this.props.filterInputs.evEbitdaMin, this.props.filterInputs.evEbitdaMax, obj.financialsDaily.ev_ebitda)
+    }
+
     grossMrqFilter = (obj) => {
         return this.positiveValuesFilter(obj, this.props.filterInputs.grossMrqMin, this.props.filterInputs.grossMrqMax, obj.financialsQuarterly.gross_mrq)
     }
@@ -131,12 +135,12 @@ class FilterComponent extends React.Component {
         return this.sliderValuesFilter(obj, this.props.filterInputs.mktCapRange, 0, 2000, obj.financialsDaily.mkt_cap)
     }
 
-    netDebtFilter = (obj) => {
-        return this.sliderValuesFilter(obj, this.props.filterInputs.netDebtRange, -2000, 2000, obj.financialsQuarterly.net_debt)
-    }
-
     monthlyPerfFilter = (obj) => {
         return this.positiveAndNegativeValuesFilter(obj, this.props.filterInputs.monthlyPerfMin, this.props.filterInputs.monthlyPerfMax, obj.financialsDaily.monthly_perf)
+    }
+
+    netDebtFilter = (obj) => {
+        return this.sliderValuesFilter(obj, this.props.filterInputs.netDebtRange, -2000, 2000, obj.financialsQuarterly.net_debt)
     }
 
     netMrqFilter = (obj) => {
@@ -206,13 +210,14 @@ class FilterComponent extends React.Component {
 
     filterResult() {
 
-        const filters = [this.oneYearBetaFilter, this.threeMonthsPerfFilter, this.annualRevenueFilter, this.assetsFilter, this.currentAssetsFilter, this.debtFilter,
-            this.divPaidFilter, this.sixMonthsPerfFilter, this.chgFilter, this.currentRatioFilter, this.debtToEquityFilter, this.divPerShareFilter,
-            this.divYieldFilter, this.ebitdaFilter, this.epsFyFilter, this.epsTtmFilter, this.epsDilutedFyFilter, this.epsDilutedTtmFilter, this.evFilter,
-            this.grossMrqFilter, this.grossProfitFyFilter, this.grossProfitMrqFilter, this.incomeFilter, this.mktCapFilter, this.netDebtFilter, this.monthlyPerfFilter,
-            this.netMrqFilter, this.operatingMrqFilter, this.pEFilter, this.pBFilter, this.pretaxMrqFilter, this.priceFilter, this.priceToRevFilter,
-            this.quickRatioFilter, this.revenueFilter, this.roaFilter, this.roeFilter, this.sharesFilter, this.volatilityFilter, this.weeklyPerfFilter,
-            this.yearlyPerfFilter, this.ytdPerfFilter]
+        const filters = [this.oneYearBetaFilter, this.threeMonthsPerfFilter, this.annualRevenueFilter, this.assetsFilter, this.currentAssetsFilter,
+            this.debtFilter, this.divPaidFilter, this.sixMonthsPerfFilter, this.chgFilter, this.currentRatioFilter, this.debtToEquityFilter,
+            this.divPerShareFilter, this.divYieldFilter, this.ebitdaFilter, this.epsFyFilter, this.epsTtmFilter, this.epsDilutedFyFilter,
+            this.epsDilutedTtmFilter, this.evFilter, this.evEbitdaFilter, this.grossMrqFilter, this.grossProfitFyFilter, this.grossProfitMrqFilter,
+            this.incomeFilter, this.mktCapFilter, this.netDebtFilter, this.monthlyPerfFilter, this.netMrqFilter, this.operatingMrqFilter,
+            this.pEFilter, this.pBFilter, this.pretaxMrqFilter, this.priceFilter, this.priceToRevFilter, this.quickRatioFilter, this.revenueFilter,
+            this.roaFilter, this.roeFilter, this.sharesFilter, this.volatilityFilter, this.weeklyPerfFilter, this.yearlyPerfFilter,
+            this.ytdPerfFilter]
 
 
         setTimeout(() => {
@@ -297,7 +302,48 @@ class FilterComponent extends React.Component {
             width: "65%"
         }
 
-        const RangeSlider = (header, rangeArray, rangeArrayString, step, min, max, style) => (
+        const leftColumnTextBoxHeader = {
+            float: "left",
+            boxSizing: "border-box",
+            marginTop: "7px",
+            paddingRight: "10px",
+            width: "30%"
+        }
+
+        const rightColumnTextBoxHeader = {
+            float: "left",
+            textAlign: "left",
+            boxSizing: "border-box",
+            marginTop: "7px",
+            paddingLeft: "180px"
+        }
+
+        const InputFilter = (header, minValueObject, minValueString, maxValueObject, maxValueString, inputRegex, headerStyle) => (
+            <div>
+                <p style={headerStyle}>
+                    {header}
+                </p>
+                <p>
+                    <InputText id={minValueString}
+                               value={minValueObject}
+                               name={minValueString}
+                               onChange={this.handleChange}
+                               style={leftTextBox}
+                               keyfilter={inputRegex}
+                    />
+                    -
+                    <InputText id={maxValueString}
+                               value={maxValueObject}
+                               name={maxValueString}
+                               onChange={this.handleChange}
+                               style={rightTextBox}
+                               keyfilter={inputRegex}
+                    />
+                </p>
+            </div>
+        )
+
+        const RangeSliderFilter = (header, rangeArray, rangeArrayString, step, min, max, style) => (
             <div>
                 <p>
                     {header}: {rangeArray[0]}M - {rangeArray[1]}M
@@ -321,7 +367,7 @@ class FilterComponent extends React.Component {
             <div>
                 <Dialog header="Choose filters"
                         visible={this.props.show}
-                        style={{width: '70%'}}
+                        style={{width: '80%'}}
                         modal={true}
                         onHide={e => {
                             this.onClose(e)
@@ -330,541 +376,179 @@ class FilterComponent extends React.Component {
                 >
 
                     <div className={styles.col1}>
-                        <p>
-                            1-Year Beta
-                            <InputText id="oneYearBetaMin"
-                                       value={this.props.filterInputs.oneYearBetaMin}
-                                       name="oneYearBetaMin"
-                                       onChange={this.handleChange}
-                                       style={leftTextBox}
-                                       keyfilter={positiveInputRegex}
-                            />
-                            -
-                            <InputText id="oneYearBetaMax"
-                                       value={this.props.filterInputs.oneYearBetaMax}
-                                       name="oneYearBetaMax"
-                                       onChange={this.handleChange}
-                                       style={rightTextBox}
-                                       keyfilter={positiveInputRegex}
-                            />
-                        </p>
-                        <p>
-                            6-Month Performance
-                            <InputText id="sixMonthPerfMin"
-                                       value={this.props.filterInputs.sixMonthPerfMin}
-                                       name="sixMonthPerfMin"
-                                       onChange={this.handleChange}
-                                       style={leftTextBox}
-                                       keyfilter={positiveAndNegativeInputRegex}
-                            />
-                            -
-                            <InputText id="sixMonthPerfMax"
-                                       value={this.props.filterInputs.sixMonthPerfMax}
-                                       name="sixMonthPerfMax"
-                                       onChange={this.handleChange}
-                                       style={rightTextBox}
-                                       keyfilter={positiveAndNegativeInputRegex}
-                            />
-                        </p>
-                        {RangeSlider("Assets", this.props.filterInputs.assetsRange, "assetsRange",
+                        <div>
+                            {InputFilter("1-Year Beta", this.props.filterInputs.oneYearBetaMin, "oneYearBetaMin",
+                                this.props.filterInputs.oneYearBetaMax, "oneYearBetaMax", positiveInputRegex, leftColumnTextBoxHeader)}
+                        </div>
+                        <div>
+                            {InputFilter("6-Month Performance", this.props.filterInputs.sixMonthPerfMin, "sixMonthPerfMin",
+                                this.props.filterInputs.sixMonthPerfMax, "sixMonthPerfMax", positiveAndNegativeInputRegex, leftColumnTextBoxHeader)}
+                        </div>
+                        <div>{RangeSliderFilter("Assets", this.props.filterInputs.assetsRange, "assetsRange",
                             25, 0, 5000, leftColumnSlider)}
-                        {RangeSlider("Current Assets", this.props.filterInputs.currentAssetsRange, "currentAssetsRange",
-                            25, 0, 1000, leftColumnSlider)}
-                        {RangeSlider("Debt", this.props.filterInputs.debtRange, "debtRange",
-                            25, 0, 1000, leftColumnSlider)}
-                        {RangeSlider("Dividends Paid", this.props.filterInputs.divPaidRange, "divPaidRange",
-                            5, -100, 0, leftColumnSlider)}
-                        <p>
-                            Div Yield %
-                            <InputText id="divYieldMin"
-                                       value={this.props.filterInputs.divYieldMin}
-                                       name="divYieldMin"
-                                       onChange={this.handleChange}
-                                       style={leftTextBox}
-                                       keyfilter={positiveInputRegex}
-                            />
-                            -
-                            <InputText id="divYieldMax"
-                                       value={this.props.filterInputs.divYieldMax}
-                                       name="divYieldMax"
-                                       onChange={this.handleChange}
-                                       style={rightTextBox}
-                                       keyfilter={positiveInputRegex}
-                            />
-                        </p>
-                        <p>
-                            EPS (TTM)
-                            <InputText id="epsTtmMin"
-                                       value={this.props.filterInputs.epsTtmMin}
-                                       name="epsTtmMin"
-                                       onChange={this.handleChange}
-                                       style={leftTextBox}
-                                       keyfilter={positiveAndNegativeInputRegex}
-                            />
-                            -
-                            <InputText id="epsTtmMax"
-                                       value={this.props.filterInputs.epsTtmMax}
-                                       name="epsTtmMax"
-                                       onChange={this.handleChange}
-                                       style={rightTextBox}
-                                       keyfilter={positiveAndNegativeInputRegex}
-                            />
-                        </p>
-                        <p>
-                            EPS Diluted (TTM)
-                            <InputText id="epsDilutedTtmMin"
-                                       value={this.props.filterInputs.epsDilutedTtmMin}
-                                       name="epsDilutedTtmMin"
-                                       onChange={this.handleChange}
-                                       style={leftTextBox}
-                                       keyfilter={positiveAndNegativeInputRegex}
-                            />
-                            -
-                            <InputText id="epsDilutedTtmMax"
-                                       value={this.props.filterInputs.epsDilutedTtmMax}
-                                       name="epsDilutedTtmMax"
-                                       onChange={this.handleChange}
-                                       style={rightTextBox}
-                                       keyfilter={positiveAndNegativeInputRegex}
-                            />
-                        </p>
-                        {RangeSlider("Gross Profit (FY)", this.props.filterInputs.grossProfitFyRange, "grossProfitFyRange",
+                        </div>
+                        <div>
+                            {RangeSliderFilter("Current Assets", this.props.filterInputs.currentAssetsRange, "currentAssetsRange",
+                                25, 0, 1000, leftColumnSlider)}
+                        </div>
+                        <div>
+                            {RangeSliderFilter("Debt", this.props.filterInputs.debtRange, "debtRange",
+                                25, 0, 1000, leftColumnSlider)}
+                        </div>
+                        <div>
+                            {RangeSliderFilter("Dividends Paid", this.props.filterInputs.divPaidRange, "divPaidRange",
+                                5, -100, 0, leftColumnSlider)}
+                        </div>
+                        <div>
+                            {InputFilter("Div Yield %", this.props.filterInputs.divYieldMin, "divYieldMin",
+                                this.props.filterInputs.divYieldMax, "divYieldMax", positiveInputRegex, leftColumnTextBoxHeader)}
+                        </div>
+                        <div>
+                            {InputFilter("EPS (TTM)", this.props.filterInputs.epsTtmMin, "epsTtmMin",
+                                this.props.filterInputs.epsTtmMax, "epsTtmMax", positiveAndNegativeInputRegex, leftColumnTextBoxHeader)}
+                        </div>
+                        <div>
+                            {InputFilter("EPS Diluted (TTM)", this.props.filterInputs.epsDilutedTtmMin, "epsDilutedTtmMin",
+                                this.props.filterInputs.epsDilutedTtmMax, "epsDilutedTtmMax", positiveAndNegativeInputRegex, leftColumnTextBoxHeader)}
+                        </div>
+                        <div>
+                            {InputFilter("EV/EBITDA", this.props.filterInputs.evEbitdaMin, "evEbitdaMin",
+                                this.props.filterInputs.evEbitdaMax, "evEbitdaMax", positiveAndNegativeInputRegex, leftColumnTextBoxHeader)}
+                        </div>
+                        <div>{RangeSliderFilter("Gross Profit (FY)", this.props.filterInputs.grossProfitFyRange, "grossProfitFyRange",
                             25, -200, 200, leftColumnSlider)}
-                        {RangeSlider("Income", this.props.filterInputs.incomeRange, "incomeRange",
-                            5, -100, 100, leftColumnSlider)}
-                        {RangeSlider("Market Cap", this.props.filterInputs.mktCapRange, "mktCapRange",
-                            50, 0, 2000, leftColumnSlider)}
-                        {RangeSlider("Net Debt", this.props.filterInputs.netDebtRange, "netDebtRange",
-                            50, -2000, 2000, leftColumnSlider)}
-                        <p>
-                            Operating Margin %
-                            <InputText id="operatingMrqMin"
-                                       value={this.props.filterInputs.operatingMrqMin}
-                                       name="operatingMrqMin"
-                                       onChange={this.handleChange}
-                                       style={leftTextBox}
-                                       keyfilter={positiveInputRegex}
-                            />
-                            -
-                            <InputText id="operatingMrqMax"
-                                       value={this.props.filterInputs.operatingMrqMax}
-                                       name="operatingMrqMax"
-                                       onChange={this.handleChange}
-                                       style={rightTextBox}
-                                       keyfilter={positiveInputRegex}
-                            />
-                        </p>
-                        <p>
-                            P/B Ratio
-                            <InputText id="p_bMin"
-                                       value={this.props.filterInputs.p_bMin}
-                                       name="p_bMin"
-                                       onChange={this.handleChange}
-                                       style={leftTextBox}
-                                       keyfilter={positiveInputRegex}
-                            />
-                            -
-                            <InputText id="p_bMax"
-                                       value={this.props.filterInputs.p_bMax}
-                                       name="p_bMax"
-                                       onChange={this.handleChange}
-                                       style={rightTextBox}
-                                       keyfilter={positiveInputRegex}
-                            />
-                        </p>
-                        <p>
-                            Price
-                            <InputText id="priceMin"
-                                       value={this.props.filterInputs.priceMin}
-                                       name="priceMin"
-                                       onChange={this.handleChange}
-                                       style={leftTextBox}
-                                       keyfilter={positiveInputRegex}
-                            />
-                            -
-                            <InputText id="priceMax"
-                                       value={this.props.filterInputs.priceMax}
-                                       name="priceMax"
-                                       onChange={this.handleChange}
-                                       style={rightTextBox}
-                                       keyfilter={positiveInputRegex}
-                            />
-                        </p>
-                        <p>
-                            Quick Ratio
-                            <InputText id="quickRatioMin"
-                                       value={this.props.filterInputs.quickRatioMin}
-                                       name="quickRatioMin"
-                                       onChange={this.handleChange}
-                                       style={leftTextBox}
-                                       keyfilter={positiveInputRegex}
-                            />
-                            -
-                            <InputText id="quickRatioMax"
-                                       value={this.props.filterInputs.quickRatioMax}
-                                       name="quickRatioMax"
-                                       onChange={this.handleChange}
-                                       style={rightTextBox}
-                                       keyfilter={positiveInputRegex}
-                            />
-                        </p>
-                        <p>
-                            Return on Assets (TTM)
-                            <InputText id="roaMin"
-                                       value={this.props.filterInputs.roaMin}
-                                       name="roaMin"
-                                       onChange={this.handleChange}
-                                       style={leftTextBox}
-                                       keyfilter={positiveAndNegativeInputRegex}
-                            />
-                            -
-                            <InputText id="roaMax"
-                                       value={this.props.filterInputs.roaMax}
-                                       name="roaMax"
-                                       onChange={this.handleChange}
-                                       style={rightTextBox}
-                                       keyfilter={positiveAndNegativeInputRegex}
-                            />
-                        </p>
-                        <p>
-                            Volatility
-                            <InputText id="volatilityMin"
-                                       value={this.props.filterInputs.volatilityMin}
-                                       name="volatilityMin"
-                                       onChange={this.handleChange}
-                                       style={leftTextBox}
-                                       keyfilter={positiveInputRegex}
-                            />
-                            -
-                            <InputText id="volatilityMax"
-                                       value={this.props.filterInputs.volatilityMax}
-                                       name="volatilityMax"
-                                       onChange={this.handleChange}
-                                       style={rightTextBox}
-                                       keyfilter={positiveInputRegex}
-                            />
-                        </p>
-                        <p>
-                            Yearly Performance
-                            <InputText id="yearlyPerfMin"
-                                       value={this.props.filterInputs.yearlyPerfMin}
-                                       name="yearlyPerfMin"
-                                       onChange={this.handleChange}
-                                       style={leftTextBox}
-                                       keyfilter={positiveAndNegativeInputRegex}
-                            />
-                            -
-                            <InputText id="yearlyPerfMax"
-                                       value={this.props.filterInputs.yearlyPerfMax}
-                                       name="yearlyPerfMax"
-                                       onChange={this.handleChange}
-                                       style={rightTextBox}
-                                       keyfilter={positiveAndNegativeInputRegex}
-                            />
-                        </p>
+                        </div>
+                        <div>
+                            {RangeSliderFilter("Income", this.props.filterInputs.incomeRange, "incomeRange",
+                                5, -100, 100, leftColumnSlider)}
+                        </div>
+                        <div>
+                            {RangeSliderFilter("Market Cap", this.props.filterInputs.mktCapRange, "mktCapRange",
+                                50, 0, 2000, leftColumnSlider)}
+                        </div>
+                        <div>
+                            {RangeSliderFilter("Net Debt", this.props.filterInputs.netDebtRange, "netDebtRange",
+                                50, -2000, 2000, leftColumnSlider)}
+                        </div>
+                        <div>
+                            {InputFilter("Operating Margin %", this.props.filterInputs.operatingMrqMin, "operatingMrqMin",
+                                this.props.filterInputs.operatingMrqMax, "operatingMrqMax", positiveInputRegex, leftColumnTextBoxHeader)}
+                        </div>
+                        <div>
+                            {InputFilter("P/B Ratio", this.props.filterInputs.p_bMin, "p_bMin",
+                                this.props.filterInputs.p_bMax, "p_bMax", positiveInputRegex, leftColumnTextBoxHeader)}
+                        </div>
+                        <div>
+                            {InputFilter("Price", this.props.filterInputs.priceMin, "priceMin",
+                                this.props.filterInputs.priceMax, "priceMax", positiveInputRegex, leftColumnTextBoxHeader)}
+                        </div>
+                        <div>
+                            {InputFilter("Quick Ratio", this.props.filterInputs.quickRatioMin, "quickRatioMin",
+                                this.props.filterInputs.quickRatioMax, "quickRatioMax", positiveInputRegex, leftColumnTextBoxHeader)}
+                        </div>
+                        <div>
+                            {InputFilter("Return on Assets (TTM)", this.props.filterInputs.roaMin, "roaMin",
+                                this.props.filterInputs.roaMax, "roaMax", positiveAndNegativeInputRegex, leftColumnTextBoxHeader)}
+                        </div>
+                        <div>
+                            {InputFilter("Volatility", this.props.filterInputs.volatilityMin, "volatilityMin",
+                                this.props.filterInputs.volatilityMax, "volatilityMax", positiveInputRegex, leftColumnTextBoxHeader)}
+                        </div>
+                        <div>
+                            {InputFilter("Yearly Performance", this.props.filterInputs.yearlyPerfMin, "yearlyPerfMin",
+                                this.props.filterInputs.yearlyPerfMax, "yearlyPerfMax", positiveAndNegativeInputRegex, leftColumnTextBoxHeader)}
+                        </div>
                     </div>
 
                     <div className={styles.col2}>
-                        <p>
-                            3-Month Performance
-                            <InputText id="threeMonthPerfMin"
-                                       value={this.props.filterInputs.threeMonthPerfMin}
-                                       name="threeMonthPerfMin"
-                                       onChange={this.handleChange}
-                                       style={leftTextBox}
-                                       keyfilter={positiveAndNegativeInputRegex}
-                            />
-                            -
-                            <InputText id="threeMonthPerfMax"
-                                       value={this.props.filterInputs.threeMonthPerfMax}
-                                       name="threeMonthPerfMax"
-                                       onChange={this.handleChange}
-                                       style={rightTextBox}
-                                       keyfilter={positiveAndNegativeInputRegex}
-                            />
-                        </p>
-                        {RangeSlider("Annual Revenue", this.props.filterInputs.annualRevenueRange, "annualRevenueRange",
-                            25, 0, 2000, rightColumnSlider)}
-                        <p>
-                            Change %
-                            <InputText id="chgMin"
-                                       value={this.props.filterInputs.chgMin}
-                                       name="chgMin"
-                                       onChange={this.handleChange}
-                                       style={leftTextBox}
-                                       keyfilter={positiveAndNegativeInputRegex}
-                            />
-                            -
-                            <InputText id="chgMax"
-                                       value={this.props.filterInputs.chgMax}
-                                       name="chgMax"
-                                       onChange={this.handleChange}
-                                       style={rightTextBox}
-                                       keyfilter={positiveAndNegativeInputRegex}
-                            />
-                        </p>
-                        <p>
-                            Current Ratio
-                            <InputText id="currentRatioMin"
-                                       value={this.props.filterInputs.currentRatioMin}
-                                       name="currentRatioMin"
-                                       onChange={this.handleChange}
-                                       style={leftTextBox}
-                                       keyfilter={positiveInputRegex}
-                            />
-                            -
-                            <InputText id="currentRatioMax"
-                                       value={this.props.filterInputs.currentRatioMax}
-                                       name="currentRatioMax"
-                                       onChange={this.handleChange}
-                                       style={rightTextBox}
-                                       keyfilter={positiveInputRegex}
-                            />
-                        </p>
-                        <p>
-                            Debt to Equity Ratio
-                            <InputText id="debtToEquityMin"
-                                       value={this.props.filterInputs.debtToEquityMin}
-                                       name="debtToEquityMin"
-                                       onChange={this.handleChange}
-                                       style={leftTextBox}
-                                       keyfilter={positiveInputRegex}
-                            />
-                            -
-                            <InputText id="debtToEquityMax"
-                                       value={this.props.filterInputs.debtToEquityMax}
-                                       name="debtToEquityMax"
-                                       onChange={this.handleChange}
-                                       style={rightTextBox}
-                                       keyfilter={positiveInputRegex}
-                            />
-                        </p>
-                        <p>
-                            Dividend Per Share (FY)
-                            <InputText id="divPerShareMin"
-                                       value={this.props.filterInputs.divPerShareMin}
-                                       name="divPerShareMin"
-                                       onChange={this.handleChange}
-                                       style={leftTextBox}
-                                       keyfilter={positiveInputRegex}
-                            />
-                            -
-                            <InputText id="divPerShareMax"
-                                       value={this.props.filterInputs.divPerShareMax}
-                                       name="divPerShareMax"
-                                       onChange={this.handleChange}
-                                       style={rightTextBox}
-                                       keyfilter={positiveInputRegex}
-                            />
-                        </p>
-                        {RangeSlider("EBITDA", this.props.filterInputs.ebitdaRange, "ebitdaRange",
-                            25, 0, 1000, rightColumnSlider)}
-                        <p>
-                            EPS (FY)
-                            <InputText id="epsFyMin"
-                                       value={this.props.filterInputs.epsFyMin}
-                                       name="epsFyMin"
-                                       onChange={this.handleChange}
-                                       style={leftTextBox}
-                                       keyfilter={positiveAndNegativeInputRegex}
-                            />
-                            -
-                            <InputText id="epsFyMax"
-                                       value={this.props.filterInputs.epsFyMax}
-                                       name="epsFyMax"
-                                       onChange={this.handleChange}
-                                       style={rightTextBox}
-                                       keyfilter={positiveAndNegativeInputRegex}
-                            />
-                        </p>
-                        <p>
-                            EPS Diluted (FY)
-                            <InputText id="epsDilutedFyMin"
-                                       value={this.props.filterInputs.epsDilutedFyMin}
-                                       name="epsDilutedFyMin"
-                                       onChange={this.handleChange}
-                                       style={leftTextBox}
-                                       keyfilter={positiveAndNegativeInputRegex}
-                            />
-                            -
-                            <InputText id="epsDilutedFyMax"
-                                       value={this.props.filterInputs.epsDilutedFyMax}
-                                       name="epsDilutedFyMax"
-                                       onChange={this.handleChange}
-                                       style={rightTextBox}
-                                       keyfilter={positiveAndNegativeInputRegex}
-                            />
-                        </p>
-                        {RangeSlider("Enterprise Value", this.props.filterInputs.evRange, "evRange",
-                            50, -2000, 2000, rightColumnSlider)}
-                        <p>
-                            Gross Margin %
-                            <InputText id="grossMrqMin"
-                                       value={this.props.filterInputs.grossMrqMin}
-                                       name="grossMrqMin"
-                                       onChange={this.handleChange}
-                                       style={leftTextBox}
-                                       keyfilter={positiveInputRegex}
-                            />
-                            -
-                            <InputText id="grossMrqMax"
-                                       value={this.props.filterInputs.grossMrqMax}
-                                       name="grossMrqMax"
-                                       onChange={this.handleChange}
-                                       style={rightTextBox}
-                                       keyfilter={positiveInputRegex}
-                            />
-                        </p>
-                        {RangeSlider("Gross Profit (MRQ)", this.props.filterInputs.grossProfitMrqRange, "grossProfitMrqRange",
-                            25, -200, 200, rightColumnSlider)}
-                        <p>
-                            Monthly Performance
-                            <InputText id="monthlyPerfMin"
-                                       value={this.props.filterInputs.monthlyPerfMin}
-                                       name="monthlyPerfMin"
-                                       onChange={this.handleChange}
-                                       style={leftTextBox}
-                                       keyfilter={positiveAndNegativeInputRegex}
-                            />
-                            -
-                            <InputText id="monthlyPerfMax"
-                                       value={this.props.filterInputs.monthlyPerfMax}
-                                       name="monthlyPerfMax"
-                                       onChange={this.handleChange}
-                                       style={rightTextBox}
-                                       keyfilter={positiveAndNegativeInputRegex}
-                            />
-                        </p>
-                        <p>
-                            Net Margin %
-                            <InputText id="netMrqMin"
-                                       value={this.props.filterInputs.netMrqMin}
-                                       name="netMrqMin"
-                                       onChange={this.handleChange}
-                                       style={leftTextBox}
-                                       keyfilter={positiveInputRegex}
-                            />
-                            -
-                            <InputText id="netMrqMax"
-                                       value={this.props.filterInputs.netMrqMax}
-                                       name="netMrqMax"
-                                       onChange={this.handleChange}
-                                       style={rightTextBox}
-                                       keyfilter={positiveInputRegex}
-                            />
-                        </p>
-                        <p>
-                            P/E Ratio
-                            <InputText id="p_eMin"
-                                       value={this.props.filterInputs.p_eMin}
-                                       name="p_eMin"
-                                       onChange={this.handleChange}
-                                       style={leftTextBox}
-                                       keyfilter={positiveInputRegex}
-                            />
-                            -
-                            <InputText id="p_eMax"
-                                       value={this.props.filterInputs.p_eMax}
-                                       name="p_eMax"
-                                       onChange={this.handleChange}
-                                       style={rightTextBox}
-                                       keyfilter={positiveInputRegex}
-                            />
-                        </p>
-                        <p>
-                            Pretax Margin %
-                            <InputText id="pretaxMrqMin"
-                                       value={this.props.filterInputs.pretaxMrqMin}
-                                       name="pretaxMrqMin"
-                                       onChange={this.handleChange}
-                                       style={leftTextBox}
-                                       keyfilter={positiveInputRegex}
-                            />
-                            -
-                            <InputText id="pretaxMrqMax"
-                                       value={this.props.filterInputs.pretaxMrqMax}
-                                       name="pretaxMrqMax"
-                                       onChange={this.handleChange}
-                                       style={rightTextBox}
-                                       keyfilter={positiveInputRegex}
-                            />
-                        </p>
-                        <p>
-                            Price to Revenue Ratio
-                            <InputText id="priceToRevMin"
-                                       value={this.props.filterInputs.priceToRevMin}
-                                       name="priceToRevMin"
-                                       onChange={this.handleChange}
-                                       style={leftTextBox}
-                                       keyfilter={positiveInputRegex}
-                            />
-                            -
-                            <InputText id="priceToRevMax"
-                                       value={this.props.filterInputs.priceToRevMax}
-                                       name="priceToRevMax"
-                                       onChange={this.handleChange}
-                                       style={rightTextBox}
-                                       keyfilter={positiveInputRegex}
-                            />
-                        </p>
-                        {RangeSlider("Revenue", this.props.filterInputs.revenueRange, "revenueRange",
-                            50, 0, 2000, rightColumnSlider)}
-                        <p>
-                            Return on Equity (TTM)
-                            <InputText id="roeMin"
-                                       value={this.props.filterInputs.roeMin}
-                                       name="roeMin"
-                                       onChange={this.handleChange}
-                                       style={leftTextBox}
-                                       keyfilter={positiveAndNegativeInputRegex}
-                            />
-                            -
-                            <InputText id="roeMax"
-                                       value={this.props.filterInputs.roeMax}
-                                       name="roeMax"
-                                       onChange={this.handleChange}
-                                       style={rightTextBox}
-                                       keyfilter={positiveAndNegativeInputRegex}
-                            />
-                        </p>
-                        {RangeSlider("Number of Shares", this.props.filterInputs.sharesRange, "sharesRange",
-                            50, 0, 1000, rightColumnSlider)}
-                        <p>
-                            Weekly Performance
-                            <InputText id="weeklyPerfMin"
-                                       value={this.props.filterInputs.weeklyPerfMin}
-                                       name="weeklyPerfMin"
-                                       onChange={this.handleChange}
-                                       style={leftTextBox}
-                                       keyfilter={positiveAndNegativeInputRegex}
-                            />
-                            -
-                            <InputText id="weeklyPerfMax"
-                                       value={this.props.filterInputs.weeklyPerfMax}
-                                       name="weeklyPerfMax"
-                                       onChange={this.handleChange}
-                                       style={rightTextBox}
-                                       keyfilter={positiveAndNegativeInputRegex}
-                            />
-                        </p>
-                        <p>
-                            YTD Performance
-                            <InputText id="ytdPerfMin"
-                                       value={this.props.filterInputs.ytdPerfMin}
-                                       name="ytdPerfMin"
-                                       onChange={this.handleChange}
-                                       style={leftTextBox}
-                                       keyfilter={positiveAndNegativeInputRegex}
-                            />
-                            -
-                            <InputText id="ytdPerfMax"
-                                       value={this.props.filterInputs.ytdPerfMax}
-                                       name="ytdPerfMax"
-                                       onChange={this.handleChange}
-                                       style={rightTextBox}
-                                       keyfilter={positiveAndNegativeInputRegex}
-                            />
-                        </p>
+                        <div>
+                            {InputFilter("3-Month Performance", this.props.filterInputs.threeMonthPerfMin, "threeMonthPerfMin",
+                                this.props.filterInputs.threeMonthPerfMax, "threeMonthPerfMax", positiveAndNegativeInputRegex, rightColumnTextBoxHeader)}
+                        </div>
+                        <div>
+                            {RangeSliderFilter("Annual Revenue", this.props.filterInputs.annualRevenueRange, "annualRevenueRange",
+                                25, 0, 2000, rightColumnSlider)}
+                        </div>
+                        <div>
+                            {InputFilter("Change %", this.props.filterInputs.chgMin, "chgMin",
+                                this.props.filterInputs.chgMax, "chgMax", positiveAndNegativeInputRegex, rightColumnTextBoxHeader)}
+                        </div>
+                        <div>
+                            {InputFilter("Current Ratio", this.props.filterInputs.currentRatioMin, "currentRatioMin",
+                                this.props.filterInputs.currentRatioMax, "currentRatioMax", positiveInputRegex, rightColumnTextBoxHeader)}
+                        </div>
+                        <div>
+                            {InputFilter("Debt to Equity Ratio", this.props.filterInputs.debtToEquityMin, "debtToEquityMin",
+                                this.props.filterInputs.debtToEquityMax, "debtToEquityMax", positiveInputRegex, rightColumnTextBoxHeader)}
+                        </div>
+                        <div>
+                            {InputFilter("Dividend Per Share (FY)", this.props.filterInputs.divPerShareMin, "divPerShareMin",
+                                this.props.filterInputs.divPerShareMax, "divPerShareMax", positiveInputRegex, rightColumnTextBoxHeader)}
+                        </div>
+                        <div>
+                            {RangeSliderFilter("EBITDA", this.props.filterInputs.ebitdaRange, "ebitdaRange",
+                                25, 0, 1000, rightColumnSlider)}
+                        </div>
+                        <div>
+                            {InputFilter("EPS (FY)", this.props.filterInputs.epsFyMin, "epsFyMin",
+                                this.props.filterInputs.epsFyMax, "epsFyMax", positiveAndNegativeInputRegex, rightColumnTextBoxHeader)}
+                        </div>
+                        <div>
+                            {InputFilter("EPS Diluted (FY)", this.props.filterInputs.epsDilutedFyMin, "epsDilutedFyMin",
+                                this.props.filterInputs.epsDilutedFyMax, "epsDilutedFyMax", positiveAndNegativeInputRegex, rightColumnTextBoxHeader)}
+                        </div>
+                        <div>
+                            {RangeSliderFilter("Enterprise Value", this.props.filterInputs.evRange, "evRange",
+                                50, -2000, 2000, rightColumnSlider)}
+                        </div>
+                        <div>
+                            {InputFilter("Gross Margin %", this.props.filterInputs.grossMrqMin, "grossMrqMin",
+                                this.props.filterInputs.grossMrqMax, "grossMrqMax", positiveInputRegex, rightColumnTextBoxHeader)}
+                        </div>
+                        <div>
+                            {RangeSliderFilter("Gross Profit (MRQ)", this.props.filterInputs.grossProfitMrqRange, "grossProfitMrqRange",
+                                25, -200, 200, rightColumnSlider)}
+                        </div>
+                        <div>
+                            {InputFilter("Monthly Performance", this.props.filterInputs.monthlyPerfMin, "monthlyPerfMin",
+                                this.props.filterInputs.monthlyPerfMax, "monthlyPerfMax", positiveAndNegativeInputRegex, rightColumnTextBoxHeader)}
+                        </div>
+                        <div>
+                            {InputFilter("Net Margin %", this.props.filterInputs.netMrqMin, "netMrqMin",
+                                this.props.filterInputs.netMrqMax, "netMrqMax", positiveInputRegex, rightColumnTextBoxHeader)}
+                        </div>
+                        <div>
+                            {InputFilter("P/E Ratio", this.props.filterInputs.p_eMin, "p_eMin",
+                                this.props.filterInputs.p_eMax, "p_eMax", positiveInputRegex, rightColumnTextBoxHeader)}
+                        </div>
+                        <div>
+                            {InputFilter("Pretax Margin %", this.props.filterInputs.pretaxMrqMin, "pretaxMrqMin",
+                                this.props.filterInputs.pretaxMrqMax, "pretaxMrqMax", positiveInputRegex, rightColumnTextBoxHeader)}
+                        </div>
+                        <div>
+                            {InputFilter("Price to Revenue Ratio", this.props.filterInputs.priceToRevMin, "priceToRevMin",
+                                this.props.filterInputs.priceToRevMax, "priceToRevMax", positiveInputRegex, rightColumnTextBoxHeader)}
+                        </div>
+                        <div>
+                            {RangeSliderFilter("Revenue", this.props.filterInputs.revenueRange, "revenueRange",
+                                50, 0, 2000, rightColumnSlider)}
+                        </div>
+                        <div>
+                            {InputFilter("Return on Equity (TTM)", this.props.filterInputs.roeMin, "roeMin",
+                                this.props.filterInputs.roeMax, "roeMax", positiveAndNegativeInputRegex, rightColumnTextBoxHeader)}
+                        </div>
+                        <div>
+                            {RangeSliderFilter("Number of Shares", this.props.filterInputs.sharesRange, "sharesRange",
+                                50, 0, 1000, rightColumnSlider)}
+                        </div>
+                        <div>
+                            {InputFilter("Weekly Performance", this.props.filterInputs.weeklyPerfMin, "weeklyPerfMin",
+                                this.props.filterInputs.weeklyPerfMax, "weeklyPerfMax", positiveAndNegativeInputRegex, rightColumnTextBoxHeader)}
+                        </div>
+                        <div>
+                            {InputFilter("YTD Performance", this.props.filterInputs.ytdPerfMin, "ytdPerfMin",
+                                this.props.filterInputs.ytdPerfMax, "ytdPerfMax", positiveAndNegativeInputRegex, rightColumnTextBoxHeader)}
+                        </div>
                     </div>
                 </Dialog>
             </div>
