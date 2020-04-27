@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should take a snapshot 1`] = `
+<DocumentFragment>
+  <div>
+    <div
+      class="p-menubar p-component"
+    >
+      <ul
+        class="p-menubar-root-list"
+        role="menubar"
+      >
+        <li
+          class="p-menuitem"
+          role="none"
+        >
+          <a
+            aria-haspopup="false"
+            class="p-menuitem-link"
+            href="#"
+            role="menuitem"
+          >
+            <span
+              class="p-menuitem-icon pi pi-home"
+            />
+            <span
+              class="p-menuitem-text"
+            >
+              Home
+            </span>
+          </a>
+        </li>
+        <li
+          class="p-menuitem"
+          role="none"
+        >
+          <a
+            aria-haspopup="false"
+            class="p-menuitem-link"
+            href="#"
+            role="menuitem"
+          >
+            <span
+              class="p-menuitem-icon pi pi-desktop"
+            />
+            <span
+              class="p-menuitem-text"
+            >
+              Screener
+            </span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</DocumentFragment>
+`;
