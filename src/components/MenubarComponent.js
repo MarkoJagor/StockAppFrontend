@@ -25,7 +25,7 @@ class MenubarComponent extends React.Component {
 
     render() {
         return (
-            <Menubar model={this.state.items} style={style}></Menubar>
+            <Menubar model={this.state.items} style={style}/>
         )
     }
 }
