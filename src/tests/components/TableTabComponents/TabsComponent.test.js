@@ -39,7 +39,7 @@ describe('TabsComponent', () => {
                 }
             };
             const expectedValue = "1"
-            wrapper.instance().handleFilterInputChange(mockEvent);
+            instance.handleFilterInputChange(mockEvent);
             expect(wrapper.state().filterInputs.oneYearBetaMin).toEqual(expectedValue)
         })
     })
@@ -53,7 +53,7 @@ describe('TabsComponent', () => {
                 }
             }
             const expectedArray = [1000, 2000];
-            wrapper.instance().handleRangeSliderChange(mockEvent.target.name, mockEvent.target.value);
+            instance.handleRangeSliderChange(mockEvent.target.name, mockEvent.target.value);
             expect(wrapper.state().filterInputs.assetsRange).toEqual(expectedArray);
         })
     })
@@ -67,7 +67,7 @@ describe('TabsComponent', () => {
                 threeMonthPerfMax: ""
             };
             wrapper.setState({filterInputsClone: mockFilterInputs});
-            wrapper.instance().resetFilterInputs();
+            instance.resetFilterInputs();
             expect(wrapper.state().filterInputs).toEqual(mockFilterInputs)
         })
     })
@@ -80,7 +80,7 @@ describe('TabsComponent', () => {
             }
             const expectedIndex = 1
             expect(wrapper.state().activeIndex).toEqual(activeIndex)
-            wrapper.instance().onTabChange(mockEvent)
+            instance.onTabChange(mockEvent)
             expect(wrapper.state().activeIndex).toEqual(expectedIndex)
         })
     })
