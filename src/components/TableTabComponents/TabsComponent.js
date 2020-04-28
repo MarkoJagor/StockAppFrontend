@@ -106,7 +106,9 @@ class TabsComponent extends React.Component {
     }
 
     filterTableData = (value) => {
-        this.setState({tableData: value})
+        this.setState({
+            tableData: value
+        })
     }
 
     handleFilterInputChange = (e) => {
@@ -133,11 +135,17 @@ class TabsComponent extends React.Component {
         })
     }
 
+    onTabChange = (e) => {
+        this.setState({
+            activeIndex: e.index
+        })
+    }
+
     render() {
 
         return (
             <TabView activeIndex={this.state.activeIndex} renderActiveOnly={false}
-                     onTabChange={(e) => this.setState({activeIndex: e.index})}>
+                     onTabChange={this.onTabChange}>
                 <TabPanel header="Overview" leftIcon="pi pi-table">
                     <OverviewTabComponent tickerData={this.props.tickerData}
                                           tableData={this.state.tableData}
