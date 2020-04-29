@@ -235,11 +235,11 @@ class FilterComponent extends React.Component {
         }, 1500)
     }
 
-    onClose = e => {
-        this.props.onClose && this.props.onClose(e)
+    onClose = () => {
+        this.props.onClose && this.props.onClose()
     };
 
-    handleChange = e => {
+    handleInputChange = e => {
         this.props.handleFilterInputChange && this.props.handleFilterInputChange(e)
         this.filterResult()
     };
@@ -291,7 +291,7 @@ class FilterComponent extends React.Component {
                     <InputText id={minValueString}
                                value={minValueObject}
                                name={minValueString}
-                               onChange={this.handleChange}
+                               onChange={this.handleInputChange}
                                style={filterInputStyle.leftTextBox}
                                keyfilter={regex}
                     />
@@ -299,7 +299,7 @@ class FilterComponent extends React.Component {
                     <InputText id={maxValueString}
                                value={maxValueObject}
                                name={maxValueString}
-                               onChange={this.handleChange}
+                               onChange={this.handleInputChange}
                                style={filterInputStyle.rightTextBox}
                                keyfilter={regex}
                     />
