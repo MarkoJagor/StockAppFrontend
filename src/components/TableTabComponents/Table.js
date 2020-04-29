@@ -32,8 +32,10 @@ class Table extends React.Component {
 
     onColumnToggle = (event) => {
         let selectedColumns = event.value;
-        let orderedSelectedColumns = this.props.dynamicColumns.filter(col => selectedColumns.includes(col));
-        this.setState({selectedColumns: orderedSelectedColumns});
+        let orderedSelectedColumns = this.props.dynamicColumns.filter(obj => selectedColumns.some(b => b.field === obj.field && b.header === obj.header));
+        this.setState({
+            selectedColumns: orderedSelectedColumns
+        });
     };
 
     openCompanyInfoPage = (row) => {
