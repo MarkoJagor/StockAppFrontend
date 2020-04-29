@@ -44,7 +44,7 @@ describe('TabsComponent', () => {
         })
     })
 
-    describe('handleSliderChange function', () => {
+    describe('handleRangeSliderChange function', () => {
         it('should change "filterInputs" array item state', () => {
             const mockEvent = {
                 target: {
