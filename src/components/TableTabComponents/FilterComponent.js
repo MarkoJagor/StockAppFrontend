@@ -333,9 +333,7 @@ class FilterComponent extends React.Component {
                         visible={this.props.show}
                         style={{width: '80%'}}
                         modal={true}
-                        onHide={e => {
-                            this.onClose(e)
-                        }}
+                        onHide={this.onClose}
                         footer={footer}
                 >
 

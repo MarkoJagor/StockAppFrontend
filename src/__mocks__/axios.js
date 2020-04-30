@@ -4,7 +4,7 @@ module.exports = {
         return Promise.resolve({
             data: [
                 {
-                    "ticker_id": "AAAAA",
+                    "ticker_id": "TAL1T",
                     "name": "TALLINK GRUPP",
                     "employees": null,
                     "sector": "Transportation",
