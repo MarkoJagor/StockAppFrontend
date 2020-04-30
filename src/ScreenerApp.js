@@ -6,6 +6,7 @@ import 'primeicons/primeicons.css';
 import CompanyInfoComponent from "./components/CompanyInfoComponent";
 import ScreenerDataComponent from "./components/ScreenerDataComponent";
 import MenubarComponent from "./components/MenubarComponent";
+import HomeComponent from "./components/HomeComponent";
 
 class ScreenerApp extends React.Component {
 
@@ -15,6 +16,7 @@ class ScreenerApp extends React.Component {
                 <div>
                     <MenubarComponent/>
                     <Switch>
+                        <Route exact path={"/"} component={HomeComponent}/>
                         <Route exact path={"/screener"} component={ScreenerDataComponent}/>
                         <Route path={"/screener/:id"} component={CompanyInfoComponent}/>
                     </Switch>
