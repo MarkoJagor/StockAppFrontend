@@ -7,7 +7,7 @@ class CompanyInfoComponent extends React.Component {
         super(props);
         this.state = {
             id: this.props.match.params.id,
-            ticker: ""
+            ticker: []
         }
     }
 
@@ -16,7 +16,7 @@ class CompanyInfoComponent extends React.Component {
         axios.get("http://localhost:8080/company/" + this.state.id)
             .then(response => {
                 this.setState({
-                    ticker: response.data.ticker_id
+                    ticker: response.data
                 })
             })
     }
@@ -24,7 +24,7 @@ class CompanyInfoComponent extends React.Component {
     render() {
         return (
             <div>
-                <h1>Ticker: {this.state.ticker}</h1>
+                <h1>Ticker: {this.state.ticker.ticker_id}</h1>
             </div>
         )
     }
