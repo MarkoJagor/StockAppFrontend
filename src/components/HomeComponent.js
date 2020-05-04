@@ -52,7 +52,7 @@ class HomeComponent extends React.Component {
     }
 
     showError = () => {
-        this.messages.show({severity: "error", summary: "Error message", detail: "Validation failed!", closable: false})
+        this.messages.show({severity: "error", summary: "Error message", detail: "Enter valid ticker symbol!", closable: false})
     }
 
     render() {

@@ -1,6 +1,6 @@
 import React from 'react';
 import {shallow} from 'enzyme';
-import ScreenerDataComponent from "../../components/ScreenerDataComponent";
+import ScreenerDataComponent from "../../../components/ScreenerComponents/ScreenerDataComponent";
 import axios from "axios";
 import {act} from 'react-dom/test-utils';
 

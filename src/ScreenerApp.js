@@ -4,7 +4,7 @@ import 'primereact/resources/themes/nova-light/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
 import CompanyInfoComponent from "./components/CompanyInfoComponent";
-import ScreenerDataComponent from "./components/ScreenerDataComponent";
+import ScreenerDataComponent from "./components/ScreenerComponents/ScreenerDataComponent";
 import MenubarComponent from "./components/MenubarComponent";
 import HomeComponent from "./components/HomeComponent";
 

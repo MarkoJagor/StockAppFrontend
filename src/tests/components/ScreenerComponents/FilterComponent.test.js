@@ -1,6 +1,6 @@
 import React from "react";
 import {shallow} from "enzyme";
-import FilterComponent from "../../../components/TableTabComponents/FilterComponent";
+import FilterComponent from "../../../components/ScreenerComponents/FilterComponent";
 
 describe('FilterComponent', () => {
     let wrapper;

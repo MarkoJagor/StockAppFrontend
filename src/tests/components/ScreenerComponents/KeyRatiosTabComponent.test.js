@@ -1,10 +1,10 @@
 import React from "react";
 import {shallow} from "enzyme";
-import OverviewTabComponent from "../../../components/TableTabComponents/OverviewTabComponent";
+import KeyRatiosTabComponent from "../../../components/ScreenerComponents/KeyRatiosTabComponent";
 
-describe('OverviewTabComponent', () => {
+describe('KeyRatiosTabComponent', () => {
     it('passes down correct props to Table component', () => {
-        const wrapper = shallow(<OverviewTabComponent/>)
+        const wrapper = shallow(<KeyRatiosTabComponent/>)
         expect(wrapper.find('Table').props()).toMatchObject({
             dynamicColumns: wrapper.state().dynamicColumns,
             tickerData: wrapper.props().tickerData,

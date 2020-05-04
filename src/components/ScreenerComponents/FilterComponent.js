@@ -315,9 +315,9 @@ class FilterComponent extends React.Component {
                 </p>
                 <Slider id={rangeArrayString}
                         value={rangeArray}
-                        onChange={(e) => this.handleSliderChange(
-                            rangeArrayString, e.value
-                        )}
+                        onChange={(e) => {
+                            this.handleSliderChange(rangeArrayString, e.value)
+                        }}
                         step={step}
                         range={true}
                         min={min}

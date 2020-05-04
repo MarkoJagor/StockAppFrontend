@@ -1,6 +1,6 @@
 import React from "react";
 import {shallow} from "enzyme";
-import Table from "../../../components/TableTabComponents/Table";
+import Table from "../../../components/ScreenerComponents/Table";
 
 describe('Table', () => {
     let wrapper;

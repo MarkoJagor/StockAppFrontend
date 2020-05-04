@@ -1,6 +1,6 @@
 import React from "react";
 import {shallow} from "enzyme";
-import TabsComponent from "../../../components/TableTabComponents/TabsComponent";
+import TabsComponent from "../../../components/ScreenerComponents/TabsComponent";
 import axios from "axios";
 
 describe('TabsComponent', () => {
