@@ -38,6 +38,10 @@ class Table extends React.Component {
         });
     };
 
+    onTickerSearch = (event) => {
+        this.props.updateTickerSearch(event.target.value)
+    }
+
     openCompanyInfoPage = (row) => {
         return <div>
             <a href={"screener/" + row.ticker_id}
@@ -62,9 +66,7 @@ class Table extends React.Component {
                 <i className="pi pi-search"
                    style={{margin: '4px 10px 0 0'}}/>
                 <InputText type="search"
-                           onChange={(e) => {
-                               this.props.updateTickerSearch(e.target.value)
-                           }}
+                           onChange={this.onTickerSearch}
                            value={this.props.searchByTickerInput}
                            placeholder="Search by Ticker"
                            size="20"/>

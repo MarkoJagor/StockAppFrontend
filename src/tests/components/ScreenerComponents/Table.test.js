@@ -5,6 +5,8 @@ import Table from "../../../components/ScreenerComponents/Table";
 describe('Table', () => {
     let wrapper;
     let instance;
+    let mockUpdateTickerSearch = jest.fn();
+
     beforeEach(() => {
         Table.defaultProps = {
             dynamicColumns: [],
@@ -15,7 +17,8 @@ describe('Table', () => {
                 {field: "financialsQuarterly.eps_ttm", header: "EPS (TTM)", sortable: true, excludeGlobalFilter: true}
             ]
         };
-        wrapper = shallow(<Table dynamicColumns={Table.defaultProps.mockData}/>);
+        wrapper = shallow(<Table dynamicColumns={Table.defaultProps.mockData}
+                                 updateTickerSearch={mockUpdateTickerSearch}/>);
         instance = wrapper.instance();
         jest.clearAllMocks();
     });
@@ -38,6 +41,20 @@ describe('Table', () => {
             expect(wrapper.state('show')).toEqual(false);
             instance.showModal();
             expect(wrapper.state('show')).toEqual(true);
+        })
+    })
+
+    describe('InputText onChange function', () => {
+        it('should call "props.updateTickerSearch" function', () => {
+            const mockEvent = {
+                target: {
+                    value: "some value"
+                }
+            };
+            const expectedValue = "some value";
+
+            instance.onTickerSearch(mockEvent)
+            expect(mockUpdateTickerSearch).toBeCalledWith(expectedValue)
         })
     })
 })
