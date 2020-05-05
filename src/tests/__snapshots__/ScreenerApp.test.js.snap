@@ -52,6 +52,86 @@ exports[`should take a snapshot 1`] = `
         </li>
       </ul>
     </div>
+    <div
+      style="position: relative; height: 100vh;"
+    >
+      <img
+        alt="Stock Market"
+        src="StockMarket.PNG"
+        style="position: absolute; width: 100%; height: 50%; opacity: 0.35; z-index: -1;"
+      />
+      <div
+        style="width: 100%; height: 50%; text-align: center;"
+      >
+        <h1
+          style="margin: auto; padding-top: 10vh; width: 100vw; font-size: 8vh;"
+        >
+          Welcome to FinTrust!
+        </h1>
+        <h2
+          style="margin: auto; font-size: 3.5vh;"
+        >
+          Your guide to Tallinn Stock Exchange.
+        </h2>
+      </div>
+      <div
+        style="width: 100%; height: 50%;"
+      >
+        <div>
+          <div />
+        </div>
+        <div
+          style="position: fixed; left: 50%; transform: translate(-50%);"
+        >
+          <div
+            class="p-inputgroup"
+          >
+            <span
+              aria-haspopup="listbox"
+              aria-owns="pr_id_1_list"
+              class="p-autocomplete p-component"
+            >
+              <input
+                aria-autocomplete="list"
+                aria-controls="pr_id_1_list"
+                autocomplete="off"
+                class="p-inputtext p-component p-autocomplete-input"
+                placeholder="Search for tickers"
+                role="searchbox"
+                type="text"
+                value=""
+              />
+              <i
+                class="p-autocomplete-loader pi pi-spinner pi-spin"
+                style="visibility: hidden;"
+              />
+              <div
+                class="p-autocomplete-panel p-input-overlay"
+                style="max-height: 200px;"
+              >
+                <ul
+                  class="p-autocomplete-items p-autocomplete-list p-component p-reset"
+                  id="pr_id_1_list"
+                  role="listbox"
+                />
+              </div>
+            </span>
+            <button
+              class="p-button p-component p-button-icon-only"
+            >
+              <span
+                class="pi pi-search p-c p-button-icon-left"
+              />
+              <span
+                class="p-button-text p-c"
+              >
+                p-btn
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </DocumentFragment>
 `;
