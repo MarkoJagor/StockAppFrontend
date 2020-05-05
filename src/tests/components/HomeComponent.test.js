@@ -45,4 +45,16 @@ describe('HomeComponent', () => {
             expect(spy).toBeCalled();
         })
     })
+
+    describe('AutoComplete onChange event', () => {
+        it('should change "ticker" state', () => {
+            const mockEvent = {
+                value: "text"
+            };
+            const expectedValue = "text";
+
+            wrapper.find('AutoComplete').simulate('change', mockEvent)
+            expect(wrapper.state('ticker')).toEqual(expectedValue)
+        })
+    })
 })
