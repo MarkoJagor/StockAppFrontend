@@ -45,7 +45,7 @@ class HomeComponent extends React.Component {
 
     onSearch = () => {
         if (this.state.tickers.includes(this.state.ticker.toUpperCase())) {
-            window.open(("http://localhost:3000/screener/" + this.state.ticker.toUpperCase()), "_blank")
+            window.open(("screener/" + this.state.ticker.toUpperCase()), "_blank")
         } else {
             this.showError()
         }
