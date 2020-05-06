@@ -3,11 +3,11 @@ import {DataTable} from "primereact/datatable";
 import {Column} from "primereact/column";
 import {InputText} from "primereact/inputtext";
 import {MultiSelect} from "primereact/multiselect";
-import {setCellBody} from "./TableHelper";
+import {setCellBody} from "./TableComponentHelper";
 import {Button} from "primereact/button";
 import FilterComponent from "./FilterComponent";
 
-class Table extends React.Component {
+class TableComponent extends React.Component {
 
     constructor() {
         super();
@@ -139,4 +139,4 @@ class Table extends React.Component {
     }
 }
 
-export default Table
+export default TableComponent

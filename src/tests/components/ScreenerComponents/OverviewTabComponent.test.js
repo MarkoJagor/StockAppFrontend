@@ -3,9 +3,9 @@ import {shallow} from "enzyme";
 import OverviewTabComponent from "../../../components/ScreenerComponents/OverviewTabComponent";
 
 describe('OverviewTabComponent', () => {
-    it('passes down correct props to Table component', () => {
+    it('passes down correct props to TableComponent component', () => {
         const wrapper = shallow(<OverviewTabComponent/>)
-        expect(wrapper.find('Table').props()).toMatchObject({
+        expect(wrapper.find('TableComponent').props()).toMatchObject({
             dynamicColumns: wrapper.state().dynamicColumns,
             tickerData: wrapper.props().tickerData,
             tableData: wrapper.props().tableData,

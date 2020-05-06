@@ -1,14 +1,14 @@
 import React from "react";
 import {shallow} from "enzyme";
-import Table from "../../../components/ScreenerComponents/Table";
+import TableComponent from "../../../components/ScreenerComponents/TableComponent";
 
-describe('Table', () => {
+describe('TableComponent', () => {
     let wrapper;
     let instance;
     let mockUpdateTickerSearch = jest.fn();
 
     beforeEach(() => {
-        Table.defaultProps = {
+        TableComponent.defaultProps = {
             dynamicColumns: [],
             mockData: [
                 {field: "name", header: "Name", sortable: true, excludeGlobalFilter: true},
@@ -17,8 +17,8 @@ describe('Table', () => {
                 {field: "financialsQuarterly.eps_ttm", header: "EPS (TTM)", sortable: true, excludeGlobalFilter: true}
             ]
         };
-        wrapper = shallow(<Table dynamicColumns={Table.defaultProps.mockData}
-                                 updateTickerSearch={mockUpdateTickerSearch}/>);
+        wrapper = shallow(<TableComponent dynamicColumns={TableComponent.defaultProps.mockData}
+                                          updateTickerSearch={mockUpdateTickerSearch}/>);
         instance = wrapper.instance();
         jest.clearAllMocks();
     });

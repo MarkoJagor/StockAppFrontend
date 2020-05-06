@@ -1,5 +1,5 @@
 import React from "react";
-import Table from "./Table";
+import TableComponent from "./TableComponent";
 
 class PerformanceTabComponent extends React.Component {
 
@@ -23,16 +23,16 @@ class PerformanceTabComponent extends React.Component {
 
     render() {
         return (
-            <Table dynamicColumns={this.state.dynamicColumns}
-                   tickerData={this.props.tickerData}
-                   tableData={this.props.tableData}
-                   filterInputs={this.props.filterInputs}
-                   searchByTickerInput={this.props.searchByTickerInput}
-                   updateTickerSearch={this.props.updateTickerSearch}
-                   filterTableData={this.props.filterTableData}
-                   handleFilterInputChange={this.props.handleFilterInputChange}
-                   handleRangeSliderChange={this.props.handleRangeSliderChange}
-                   resetFilterInputs={this.props.resetFilterInputs}/>
+            <TableComponent dynamicColumns={this.state.dynamicColumns}
+                            tickerData={this.props.tickerData}
+                            tableData={this.props.tableData}
+                            filterInputs={this.props.filterInputs}
+                            searchByTickerInput={this.props.searchByTickerInput}
+                            updateTickerSearch={this.props.updateTickerSearch}
+                            filterTableData={this.props.filterTableData}
+                            handleFilterInputChange={this.props.handleFilterInputChange}
+                            handleRangeSliderChange={this.props.handleRangeSliderChange}
+                            resetFilterInputs={this.props.resetFilterInputs}/>
         )
     }
 }
