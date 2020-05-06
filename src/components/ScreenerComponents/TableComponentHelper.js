@@ -50,36 +50,3 @@ export function setCellBody(row, column, i) {
         }
     }
 }
-
-/*export function setCellColor(row, column, i, style) {
-
-    let positiveValue = {
-        color: "green"
-    }
-
-    let negativeValue = {
-        color: "red"
-    }
-
-    const columns = [row.financialsDaily.div_yield, row.financialsDaily.chg, row.financialsDaily.weekly_perf, row.financialsDaily.monthly_perf, row.financialsDaily.three_month_perf,
-        row.financialsDaily.six_month_perf, row.financialsDaily.ytd_perf, row.financialsDaily.yearly_perf, row.financialsDaily.volatility,
-        row.financialsQuarterly.gross_mrq, row.financialsQuarterly.operating_mrq, row.financialsQuarterly.pretax_mrq, row.financialsQuarterly.net_mrq,
-        row.financialsQuarterly.roa, row.financialsQuarterly.roe]
-
-    const fields = ["financialsDaily.div_yield", "financialsDaily.chg", "financialsDaily.weekly_perf", "financialsDaily.monthly_perf", "financialsDaily.three_month_perf",
-        "financialsDaily.six_month_perf", "financialsDaily.ytd_perf", "financialsDaily.yearly_perf", "financialsDaily.volatility",
-        "financialsQuarterly.gross_mrq", "financialsQuarterly.operating_mrq", "financialsQuarterly.pretax_mrq", "financialsQuarterly.net_mrq",
-        "financialsQuarterly.roa", "financialsQuarterly.roe"]
-
-    for (i = 0; i < columns.length; i++) {
-        if (column.field === fields[i]) {
-            if (columns[i] != null) {
-                if (columns[i] > 0) {
-                    return {positiveValue}
-                } else {
-                    return {negativeValue}
-                }
-            }
-        }
-    }
-}*/
