@@ -15,7 +15,7 @@ class ScreenerDataComponent extends React.Component {
 
         const multiplier = 100
 
-        axios.get("http://localhost:8080/company")
+        axios.get("http://localhost:8080/companies")
             .then(response => {
                 this.setState({
                     tickerData: response.data.map((item) => {

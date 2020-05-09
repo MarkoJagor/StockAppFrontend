@@ -20,7 +20,7 @@ class HomeComponent extends React.Component {
 
     componentDidMount() {
         document.body.style.overflow = "hidden"
-        axios.get("http://localhost:8080/company")
+        axios.get("http://localhost:8080/companies")
             .then(response => {
                 this.setState({
                     tickers: response.data.map(obj => obj.ticker_id)

@@ -18,7 +18,7 @@ class CompanyInfoComponent extends React.Component {
 
     componentDidMount() {
 
-        axios.get("http://localhost:8080/company/" + this.state.id)
+        axios.get("http://localhost:8080/companies/" + this.state.id)
             .then(response => {
                 if (response.data !== null) {
                     this.setState({
@@ -35,7 +35,7 @@ class CompanyInfoComponent extends React.Component {
                 -
             </span>
         )
-        
+
         const value = (propValue) => {
             if (propValue === null) {
                 return nullValue
