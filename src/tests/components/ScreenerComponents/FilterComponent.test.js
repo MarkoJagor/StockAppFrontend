@@ -265,28 +265,29 @@ describe('FilterComponent', () => {
     });
 
     describe('positiveValuesFilter function', () => {
-        it('should return true or false', () => {
+        it('should return true if object matches constraints', () => {
             expect(instance.positiveValuesFilter(mockTickerData[0], 0, 1, mockTickerData[0].financialsDaily.price)).toEqual(true)
+        })
+        it('should return false if object does not match constraints', () => {
             expect(instance.positiveValuesFilter(mockTickerData[0], 0, 0.5, mockTickerData[0].financialsDaily.price)).toEqual(false)
-            //expect(instance.positiveValuesFilter(mockCompany[0], "", "", mockCompany[0].financialsDaily.price)).toEqual(mockCompany[0])
         })
     })
 
     describe('positiveAndNegativeValues function', () => {
-        it('should return true or false', () => {
+        it('should return true if object matches constraints', () => {
             expect(instance.positiveAndNegativeValuesFilter(mockTickerData[0], 0, 1, mockTickerData[0].financialsDaily.price)).toEqual(true)
+        })
+        it('should return false if object does not match constraints', () => {
             expect(instance.positiveAndNegativeValuesFilter(mockTickerData[0], 0, 0.5, mockTickerData[0].financialsDaily.price)).toEqual(false)
-            //expect(instance.positiveValuesFilter(mockCompany[0], "", "", mockCompany[0].financialsDaily.price)).toEqual(mockCompany[0])
         })
     })
 
     describe('sliderValuesFilter function', () => {
-        it('should return true or false', () => {
+        it('should return true if object matches constraints', () => {
             expect(instance.sliderValuesFilter(mockTickerData[0], [0, 2000], 100, 2000, mockTickerData[0].financialsQuarterly.annual_revenue)).toEqual(true);
-            expect(instance.sliderValuesFilter(mockTickerData[0], [1500, 2000], 0, 2000, mockTickerData[0].financialsQuarterly.annual_revenue)).toEqual(false);
         })
-        it('should return an object', () => {
-            expect(instance.sliderValuesFilter(mockTickerData[0], [0, 2000], 0, 2000, mockTickerData[0].financialsQuarterly.annual_revenue)).toEqual(mockTickerData[0]);
+        it('should return false if object does not match constraints', () => {
+            expect(instance.sliderValuesFilter(mockTickerData[0], [1500, 2000], 0, 2000, mockTickerData[0].financialsQuarterly.annual_revenue)).toEqual(false);
         })
     })
 
@@ -679,12 +680,6 @@ describe('FilterComponent', () => {
             instance.resetFilterInputs();
             expect(spy).toBeCalled();
             expect(mockResetFilterInputs).toBeCalled()
-        })
-    })
-
-    describe('onHide function', () => {
-        it('should call "onClose" function', () => {
-
         })
     })
 })

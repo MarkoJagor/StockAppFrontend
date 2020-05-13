@@ -33,7 +33,7 @@ describe('HomeComponent', () => {
             wrapper.setState({ticker: "tal1t"});
             instance.onSearch();
 
-            expect(global.open).toBeCalledWith(("http://localhost:3000/screener/" + wrapper.state('ticker').toUpperCase()), "_blank");
+            expect(global.open).toBeCalledWith(("screener/" + wrapper.state('ticker').toUpperCase()), "_blank");
         })
 
         it('should call "showError" function, if search query is incorrect', () => {
