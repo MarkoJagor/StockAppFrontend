@@ -52,7 +52,7 @@ class HomeComponent extends React.Component {
     }
 
     showError = () => {
-        this.messages.show({severity: "error", summary: "Error message", detail: "Enter valid ticker symbol!", closable: false})
+        this.messages.show({severity: "error", summary: "Error message", detail: "Enter a valid ticker symbol!", closable: false})
     }
 
     render() {
@@ -64,7 +64,7 @@ class HomeComponent extends React.Component {
                         Welcome to FinTrust!
                     </h1>
                     <h2 style={homeComponentStyle.h2}>
-                        Your guide to Tallinn Stock Exchange.
+                        Your guide to the Tallinn Stock Exchange.
                     </h2>
                 </div>
                 <div style={homeComponentStyle.lowerContainer}>
